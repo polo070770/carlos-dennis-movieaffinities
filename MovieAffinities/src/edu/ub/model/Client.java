@@ -15,7 +15,7 @@ public class Client {
     private String nom;
     private String nomUsuari;
     private String dni;
-    private String adresa;
+    private String adreca;
     private String password;
     private boolean vip;
     private int numFaltes;
@@ -41,13 +41,13 @@ public class Client {
      * @param numPelisVistes 
      */
     public Client(int idClient, String nom, String nomUsuari, String dni,
-            String adresa, String password, boolean vip, int numFaltes) {
+            String adreca, String password, boolean vip, int numFaltes) {
         //Per defecte
         this.idClient = idClient;
         this.nom = nom;
         this.nomUsuari = nomUsuari;
         this.dni = dni;
-        this.adresa = adresa;
+        this.adreca = adreca;
         this.password = password;
         this.vip = vip;
 
@@ -59,12 +59,12 @@ public class Client {
         this.numPelisVistes = 0;
     }
 
-    public String getAdresa() {
-        return adresa;
+    public String getAdreca() {
+        return adreca;
     }
 
-    public void setAdresa(String adresa) {
-        this.adresa = adresa;
+    public void setAdreca(String adreca) {
+        this.adreca = adreca;
     }
 
     public float getCuotaMensual() {
@@ -154,4 +154,15 @@ public class Client {
     public void setVip(boolean vip) {
         this.vip = vip;
     }
+    
+    @Override
+    public String toString(){
+        String r;
+        r = "\nClient ID: " + this.idClient + "\n-----------------" +
+		"\nNom: " + this.nom + "\nUsuari: " + this.nomUsuari + "\nDni: " + this.dni +
+		"\nAdreça: " + this.adreca + "\nPassword: " + this.password + "\nEs VIP: " + this.vip +
+		"\nNombre de faltes: " + this.numFaltes;        
+        return r;
+    }
+    
 }
