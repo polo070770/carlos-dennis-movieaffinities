@@ -1,6 +1,7 @@
 package edu.ub.vista;
 
 import edu.ub.controlador.MovieAffDataManager;
+import edu.ub.controlador.ControladorMovieAff;
 import java.io.File;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -15,7 +16,7 @@ import org.xml.sax.SAXParseException;
 
 /**
  * Parser per a obtenir dades d'un fitxer XML de Movie Affinities
- * 
+ *
  */
 public class MovieAffXMLParser {
 
@@ -23,6 +24,7 @@ public class MovieAffXMLParser {
      * Data manager
      */
     MovieAffDataManager dataManager;
+    ControladorMovieAff ctrlMovieAff;
 
     /**
      * Constructor
@@ -32,8 +34,8 @@ public class MovieAffXMLParser {
     }
 
     /**
-     * Parseja un fitxer XML de Movie Affinities i guarda les dades al sistema 
-     * 
+     * Parseja un fitxer XML de Movie Affinities i guarda les dades al sistema
+     *
      * @param nomFitxer
      */
     public void parse(String nomFitxer) {
@@ -61,7 +63,7 @@ public class MovieAffXMLParser {
 
     /**
      * Obte els films per Movie Affinities
-     * 
+     *
      * @param doc document XML del que obtenir les dades
      */
     private void obtenirMovies(Document doc) {
@@ -104,9 +106,9 @@ public class MovieAffXMLParser {
 
     /**
      * Obte la productura que va fer el film
-     * 
+     *
      * @param eMovie film on buscar els generes
-     * @param idMovie id del film 
+     * @param idMovie id del film
      */
     private void obtenirProductora(Element eMovie, String idMovie) {
         String nom, id;
@@ -122,7 +124,7 @@ public class MovieAffXMLParser {
 
     /**
      * Obte els generes als quals un film pertany
-     * 
+     *
      * @param eMovie film on buscar els generes
      * @param idMovie id del film al qual pertanyen els generes
      */
@@ -146,7 +148,7 @@ public class MovieAffXMLParser {
 
     /**
      * Obte informacio sobre els artistes que hi participen a un film
-     * 
+     *
      * @param eMovie film on buscar els artistes
      * @param idMovie id de la pelicula
      */
@@ -171,7 +173,7 @@ public class MovieAffXMLParser {
 
     /**
      * Obte informacio sobre les valoracions
-     * 
+     *
      * @param doc fitxer XML del que obtenir les dades
      */
     private void obtenirValoracions(Document doc) {
@@ -197,8 +199,8 @@ public class MovieAffXMLParser {
     }
 
     /**
-     * Obte informacio sobre els administradors 
-     * 
+     * Obte informacio sobre els administradors
+     *
      * @param doc fitxer XML del que obtenir les dades
      */
     private void obtenirAdministradors(Document doc) {
@@ -234,7 +236,7 @@ public class MovieAffXMLParser {
 
     /**
      * Obte informacio sobre els clients
-     * 
+     *
      * @param doc fitxer XML del que obtenir les dades
      */
     private void obtenirClients(Document doc) {
@@ -274,6 +276,7 @@ public class MovieAffXMLParser {
 
                 // Creem el client
                 dataManager.crearClient(id, nom, dni, adreca, usuari, password, vip, faltes);
+
             }
         }
     }

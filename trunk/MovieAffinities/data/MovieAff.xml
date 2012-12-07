@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE movieaff>
+
+<movieaff>
+
+	<!-- MOVIES -->
+   <movies>
+       <movie id="pfiction" mins="154" year="1994">
+           	<title>Pulp Fiction</title>
+           	<description>L'encreuament de les vides de diferents personatges</description>
+           	<productora id="1" name="Miramax"></productora>
+           	<generes>
+           		<genere id="1" name="thriller"></genere>
+           	</generes>
+			<artists>
+				<artist id="1" nom="Q.Tarantino" tipus="director"></artist>
+				<artist id="2" nom="J.Travolta" tipus="actor"></artist>
+				<artist id="3" nom="S.L.Jackson" tipus="actor"></artist>
+			</artists>
+       </movie>
+       <movie id="swars2" mins="121" year="1977">
+            <title>Star Wars: Attack of the clones</title>
+            <description>La batalla per la supremacia de la galaxia comença</description>
+            <productora id="2" name="Lucasfilm"></productora>
+            <generes>
+           		<genere id="2" name="adventure"></genere>
+           		<genere id="3" name="fantasy"></genere>
+           	</generes>
+			<artists>
+				<artist id="4" nom="G.Lucas" tipus="director"></artist>
+				<artist id="5" nom="N.Portman" tipus="actor"></artist>
+				<artist id="3" nom="S.L.Jackson" tipus="actor"></artist>
+			</artists>
+       </movie>
+       <movie id="tdkrises" mins="152" year="2008">
+			<title>The Dark Knight Rises</title>
+			<description>Un nou enemic apareix a Gotham City</description>
+			<productora id="3" name="Warner Bros"></productora>
+			<generes>
+           		<genere id="4" name="action"></genere>
+           	</generes>
+			<artists>
+				<artist id="6" nom="C.Nolan" tipus="director"></artist>
+				<artist id="7" nom="J.G.Levitt" tipus="actor"></artist>
+				<artist id="8" nom="C.Bale" tipus="actor"></artist>
+			</artists>
+       </movie>
+       <movie id="inception" mins="148" year="2010">
+            <title>Inception</title>
+            <description>Aventures d'un grup d'espies de somnis</description>
+            <productora id="3" name="Warner Bros"></productora>
+            <generes>
+           		<genere id="2" name="adventure"></genere>
+           		<genere id="4" name="action"></genere>
+           	</generes>
+			<artists>
+				<artist id="6" nom="C.Nolan" tipus="director"></artist>
+				<artist id="7" nom="J.G.Levitt" tipus="actor"></artist>
+				<artist id="9" nom="L.DiCaprio" tipus="actor"></artist>
+				<artist id="10" nom="E.Page" tipus="actor"></artist>
+			</artists>
+       </movie>
+   </movies>
+    
+   	<!-- VALORACIONS -->
+ 	<valoracions>
+		<valoracio id="1" client="1" movie="pfiction" puntuacio="5" data="12/04/2012"></valoracio>
+		<valoracio id="2" client="1" movie="inception" puntuacio="3" data="01/08/2012"></valoracio>
+		<valoracio id="3" client="3" movie="swars2" puntuacio="2" data="23/05/2012"></valoracio>
+		<valoracio id="4" client="6" movie="pfiction" puntuacio="5" data="09/09/2012"></valoracio>
+		<valoracio id="5" client="6" movie="tdkrises" puntuacio="4" data="15/06/2012"></valoracio>
+		<valoracio id="6" client="6" movie="swars2" puntuacio="1" data="16/06/2012"></valoracio>
+	</valoracions>
+	
+	<!-- ADMINISTRADORS -->
+	<admins>
+		<admin id="pierre">
+			<nom>Pierre Nodoyuna</nom>
+			<usuari>pierre</usuari>
+			<password>pierre</password>
+		</admin>
+	</admins>
+	
+	<!-- CLIENTS -->
+	<clients>
+		<client id="1" vip="true" faltes="0">
+			<nom>Armando Jaleo</nom>
+			<usuari>ajaleo</usuari>
+			<dni>11111111A</dni>
+			<adreca>Madrigal 8, 00001, Barcelona</adreca>
+			<password>ajaleo</password>
+		</client>
+		<client id="2" vip="false" faltes="0">
+			<nom>Lola Mento</nom>
+			<dni>22222222B</dni>
+			<adreca>Monumental 2, 00003, Barcelona</adreca>
+			<usuari>lmento</usuari>
+			<password>lmento</password>
+		</client>
+		<client id="3" vip="false" faltes="0">
+			<nom>Leandro Gao</nom>
+			<dni>33333333C</dni>
+			<adreca>Uruguay 12, 00001, Barcelona</adreca>
+			<usuari>lgao</usuari>
+			<password>lgao</password>
+		</client>
+		<client id="4" vip="true" faltes="0">
+			<nom>Esther Colero</nom>
+			<dni>44444444D</dni>
+			<adreca>Gran Via 222, 00007, Barcelona</adreca>
+			<usuari>ecolero</usuari>
+			<password>ecolero</password>
+		</client>
+		<client id="5" vip="false" faltes="0">
+			<nom>Dolores Tomacal</nom>
+			<dni>55555555E</dni>
+			<adreca>Sta Eulalia 1, 00031, San Benet del Bages</adreca>
+			<usuari>dtomacal</usuari>
+			<password>dtomacal</password>
+		</client>
+		<client id="6" vip="false" faltes="0">
+			<nom>Aitor Menta</nom>
+			<dni>66666666F</dni>
+			<adreca>Carretera de l'Esglesia 44, 10011, Llimiana</adreca>
+			<usuari>atormenta</usuari>
+			<password>atormenta</password>
+		</client>
+		<client id="7" vip="true" faltes="2">
+			<nom>Francisco Lorin Colorado </nom>
+			<dni>77777777G</dni>
+			<adreca>Carretera de l'Esglesia 41, 10011, Llimiana</adreca>
+			<usuari>florin</usuari>
+			<password>florin</password>
+		</client>
+	</clients>
+</movieaff>

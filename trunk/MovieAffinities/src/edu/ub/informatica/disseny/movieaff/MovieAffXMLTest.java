@@ -25,6 +25,6 @@ public class MovieAffXMLTest extends DefaultHandler {
 	 */
 	public MovieAffXMLTest(String nomFitxer) {
 		MovieAffDataManager dataManager = new MovieAffDataManager();
-		dataManager.obtenirDades(nomFitxer);
+		//dataManager.obtenirDades(nomFitxer);
 	}
 }
