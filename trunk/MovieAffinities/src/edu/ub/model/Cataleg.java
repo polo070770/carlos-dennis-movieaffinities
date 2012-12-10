@@ -78,4 +78,43 @@ public class Cataleg {
             i ++;
         }
     }
+    
+    public void addGenerePelicula(Genere genere, String idPelicula){
+        boolean trobat = false;
+        int i = 0;
+        while(!trobat && i < list_Pelis.size()){
+            if(list_Pelis.get(i).getIdPelicula().equalsIgnoreCase(idPelicula)){
+                list_Pelis.get(i).addGenere(genere);
+                trobat = true;
+            }
+            i ++;
+        }
+    }
+    
+    public void addProductoraPelicula(Productora productora, String idPelicula){
+        boolean trobat = false;
+        int i = 0;
+        while(!trobat && i < list_Pelis.size()){
+            if(list_Pelis.get(i).getIdPelicula().equalsIgnoreCase(idPelicula)){
+                list_Pelis.get(i).setProductora(productora);
+                trobat = true;
+            }
+            i ++;
+        }
+    }
+    
+    public void addValoracioPelicula(Valoracio valoracio, String idPelicula){
+        boolean trobat = false;
+        int i = 0;
+        while(!trobat && i < list_Pelis.size()){
+            if(list_Pelis.get(i).getIdPelicula().equalsIgnoreCase(idPelicula)){
+                list_Pelis.get(i).addValoracio(valoracio);
+                trobat = true;
+            }
+            i ++;
+        }
+    }
+    
+    
+    
 }

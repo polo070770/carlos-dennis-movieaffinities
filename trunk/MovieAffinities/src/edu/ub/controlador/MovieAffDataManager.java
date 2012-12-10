@@ -118,6 +118,14 @@ public class MovieAffDataManager {
          System.out.println("--------------------------------------");
          System.out.println("Nom: " + nom);
          System.out.println("Film ID: " + idMovie);*/
+
+        int id_1 = Integer.valueOf(id);
+
+        Genere genere;
+        genere = new Genere(id_1, nom);
+
+        ctrlMovieAff.afegirGenere(genere, idMovie);
+
     }
 
     /**
@@ -136,6 +144,15 @@ public class MovieAffDataManager {
          System.out.println("--------------------------------------");
          System.out.println("Nom: " + nom);
          System.out.println("Film ID: " + idMovie);*/
+
+        int id_1 = Integer.valueOf(id);
+
+        Productora productora;
+        productora = new Productora(nom, id_1);
+
+        ctrlMovieAff.afegirProductora(productora, idMovie);
+
+
     }
 
     /**
@@ -157,6 +174,22 @@ public class MovieAffDataManager {
          System.out.println("Film: " + film);
          System.out.println("Puntuacio: " + puntuacio);
          System.out.println("Data: " + data);*/
+
+        Data data_1;
+        String[] tmp = data.split("/");
+        data_1 = new Data(Integer.valueOf(tmp[0]), Integer.valueOf(tmp[1]), Integer.valueOf(tmp[2]));
+
+        int client_1 = Integer.valueOf(client);
+
+        int puntuacio_1 = Integer.valueOf(puntuacio);
+
+        int id_1 = Integer.valueOf(id);
+
+        Valoracio valoracio;
+        valoracio = new Valoracio(film, client_1, puntuacio_1, data_1, id_1);
+        ctrlMovieAff.afegirValoracioClient(valoracio, client_1);
+        ctrlMovieAff.afegirValoracioPelicula(valoracio, film);
+
     }
 
     /**
@@ -177,6 +210,11 @@ public class MovieAffDataManager {
          System.out.println("Nom: " + nom);
          System.out.println("Usuari: " + usuari);
          System.out.println("Password: " + password);*/
+
+        Client administrador;
+        administrador = new Client(nom, usuari, password);
+        ctrlMovieAff.asignarAdministrador(administrador);
+
     }
 
     /**
