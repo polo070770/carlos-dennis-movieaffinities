@@ -4,6 +4,8 @@
  */
 package edu.ub.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author maikel
@@ -24,9 +26,10 @@ public class Client {
     private float cuotaMensual;
     private boolean estatStream;
     private int numPelisVistes;
+    private ArrayList<Valoracio> valoracions_client;
 
     /**
-     * 
+     *
      * @param idClient
      * @param nom
      * @param nomUsuari
@@ -38,7 +41,7 @@ public class Client {
      * @param nacionalitat
      * @param cuotaMensual
      * @param estatStream
-     * @param numPelisVistes 
+     * @param numPelisVistes
      */
     public Client(int idClient, String nom, String nomUsuari, String dni,
             String adreca, String password, boolean vip, int numFaltes) {
@@ -57,6 +60,14 @@ public class Client {
         this.cuotaMensual = 0;
         this.estatStream = false;
         this.numPelisVistes = 0;
+        this.valoracions_client = new ArrayList();
+        
+    }
+
+    public Client(String nom, String nomUsuari, String password) {
+        this.nom = nom;
+        this.nomUsuari = nomUsuari;
+        this.password = password;
     }
 
     public String getAdreca() {
@@ -154,15 +165,23 @@ public class Client {
     public void setVip(boolean vip) {
         this.vip = vip;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
+        String s = "\nValoracions: ";
+        for (Valoracio v: valoracions_client){
+            s += v.getValoracio() + " en la peli " + v.getIdPelicula() +". \n";
+        }
+        
         String r;
-        r = "\nClient ID: " + this.idClient + "\n-----------------" +
-		"\nNom: " + this.nom + "\nUsuari: " + this.nomUsuari + "\nDni: " + this.dni +
-		"\nAdreça: " + this.adreca + "\nPassword: " + this.password + "\nEs VIP: " + this.vip +
-		"\nNombre de faltes: " + this.numFaltes;        
-        return r;
+        r = "\nClient ID: " + this.idClient + "\n-----------------"
+                + "\nNom: " + this.nom + "\nUsuari: " + this.nomUsuari + "\nDni: " + this.dni
+                + "\nAdreça: " + this.adreca + "\nPassword: " + this.password + "\nEs VIP: " + this.vip
+                + "\nNombre de faltes: " + this.numFaltes;
+        return r + s;
     }
-    
+
+    public void addValoracio(Valoracio valoracio) {
+        this.valoracions_client.add(valoracio);
+    }
 }

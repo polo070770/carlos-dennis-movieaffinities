@@ -4,7 +4,6 @@ package edu.ub.vista;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import edu.ub.controlador.ControladorMovieAff;
 import edu.ub.model.Client;
 
@@ -35,12 +34,10 @@ public class MovieAffinities {
     }
 
     public void mostraClients() {
-        //System.out.println(_ctrlMovieAff.getStringListClients());
+        System.out.println(_ctrlMovieAff.getStringListClients());
     }
-    
-    public void mostraCataleg(){
+
+    public void mostraCataleg() {
         System.out.println(_ctrlMovieAff.getStringCataleg());
     }
-    
-
 }

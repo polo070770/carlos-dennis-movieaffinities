@@ -21,6 +21,7 @@ public class Artista {
         this.id = id;
     }
 
+    @Override
     public String toString() {
         String r;
         r = "\nArtista amb ID: " + this.id
