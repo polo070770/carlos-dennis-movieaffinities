@@ -7,17 +7,24 @@ package edu.ub.model;
 import java.util.ArrayList;
 
 /**
- *
- * @author maikel
+ * Clase Cataleg
+ * @author Michel Dennis Quitaquis i Carlos Cortés Sánchez
  */
 public class Cataleg {
 
     private ArrayList<Pelicula> list_Pelis;
 
+    /**
+     * Constructor
+     */
     public Cataleg() {
         list_Pelis = new ArrayList();
     }
 
+    /**
+     * Métode que mostra el catàleg, retornant una llista de pel·lícules
+     * @return r 
+     */
     public String mostrarCataleg() {
         String r = "";
         for (Pelicula p : list_Pelis) {
@@ -51,10 +58,19 @@ public class Cataleg {
         return "";
     }
 
+    /**
+     * Mètode per afegir una pel·lícula
+     * @param pelicula pel·lícula que s'afegeix
+     */
     public void addPelicula(Pelicula pelicula) {
         list_Pelis.add(pelicula);
     }
 
+    /**
+     * Mètode per afegir un director a una pel·lícula
+     * @param director director de la pel·lícula
+     * @param idPelicula id de la pel·lícula
+     */
     public void addDirectorPelicula(Artista director, String idPelicula) {
         boolean trobat = false;
         int i = 0;
@@ -67,6 +83,11 @@ public class Cataleg {
         }
     }
 
+    /**
+     * Mètode per afegir un actor a una pel·lícula
+     * @param actor actor de la pel·lícula
+     * @param idPelicula id de la pel·lícula
+     */
     public void addActorPelicula(Artista actor, String idPelicula) {
         boolean trobat = false;
         int i = 0;
@@ -79,6 +100,11 @@ public class Cataleg {
         }
     }
     
+    /**
+     * Mètode per afegir un gènere a una pel·lícula
+     * @param genere gènere de la pel·lícula
+     * @param idPelicula id de la pel·lícula
+     */
     public void addGenerePelicula(Genere genere, String idPelicula){
         boolean trobat = false;
         int i = 0;
@@ -91,6 +117,11 @@ public class Cataleg {
         }
     }
     
+    /**
+     * Mètode per afegir una productora a una pel·lícula
+     * @param productora productora de la pel·lícula
+     * @param idPelicula id de la pel·lícula
+     */
     public void addProductoraPelicula(Productora productora, String idPelicula){
         boolean trobat = false;
         int i = 0;
@@ -103,6 +134,11 @@ public class Cataleg {
         }
     }
     
+    /**
+     * Mètode per afegir una valoració a una pel·lícula
+     * @param valoracio valoració de la pel·lícula
+     * @param idPelicula id de la pel·lícula
+     */
     public void addValoracioPelicula(Valoracio valoracio, String idPelicula){
         boolean trobat = false;
         int i = 0;
