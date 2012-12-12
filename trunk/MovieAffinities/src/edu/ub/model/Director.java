@@ -5,11 +5,16 @@
 package edu.ub.model;
 
 /**
- *
- * @author maikel
+ * Clase Director
+ * @author Michel Dennis Quitaquis i Carlos Cortés Sánchez
  */
 public class Director extends Artista {
 
+    /**
+     * Constructor
+     * @param nom nom del director
+     * @param id id del diector
+     */
     public Director(String nom, String id) {
         super(nom, id);
     }

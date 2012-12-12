@@ -9,15 +9,18 @@ import edu.ub.model.Client;
 
 /**
  *
- * Classe Main Movie Affinities
+ * Clase Main Movie Affinities
  *
- * @author maikel
+ * @author Michel Dennis Quitaquis i Carlos Cortés Sánchez
  */
 public class MovieAffinities {
 
     ControladorMovieAff _ctrlMovieAff;
     Client userLogat;
 
+    /**
+     * Constructor
+     */
     public MovieAffinities() {
 
         _ctrlMovieAff = new ControladorMovieAff();
@@ -33,10 +36,16 @@ public class MovieAffinities {
 
     }
 
+    /**
+     * Mostra la llista de clients
+     */
     public void mostraClients() {
         System.out.println(_ctrlMovieAff.getStringListClients());
     }
 
+    /**
+     * Mostra el catàleg de pel·lícules
+     */
     public void mostraCataleg() {
         System.out.println(_ctrlMovieAff.getStringCataleg());
     }
