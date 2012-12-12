@@ -3,7 +3,7 @@ package edu.ub.model;
 import edu.ub.model.Artista;
 
 /**
- * Clase Actor.
+ * Clase Actor
  * 
  * @author Michel Dennis Quitaquis i Carlos Cortés Sánchez
  */
