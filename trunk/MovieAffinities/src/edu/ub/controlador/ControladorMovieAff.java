@@ -143,4 +143,26 @@ public class ControladorMovieAff {
             i++;
         }
     }
+
+    public boolean comprovaUser(String nomUsuari) {
+        boolean trobat = false;
+        int i = 0;
+        while(!trobat && i < list_Clients.size()){
+            if(list_Clients.get(i).getNomUsuari().equalsIgnoreCase(nomUsuari)){
+                trobat = true;
+            }
+            i++;
+        }
+        return trobat;
+    }
+    
+    
+    
+    public int obteTamany(){
+        return list_Clients.size();
+    }
+
+    public boolean comprovaLogin(String nomUsuari, String pass) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }

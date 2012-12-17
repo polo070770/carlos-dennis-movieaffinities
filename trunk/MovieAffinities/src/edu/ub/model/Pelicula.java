@@ -126,9 +126,9 @@ public class Pelicula {
         }
 
         String r;
-        r = "\nFilm amb ID: " + this.idPelicula
+        r = "\nTitol: " + this.titol
                 + "\n--------------------------------------------------"
-                + "\nTitol: " + this.titol + "\nMinuts: " + this.minuts + "\nAny: " + this.anyPublicacio.toStringAnyPublicacio()
+                + "\nMinuts: " + this.minuts + "\nAny: " + this.anyPublicacio.toStringAnyPublicacio()
                 + "\nDescripció: " + this.descripcio;
         return r + s;
     }
