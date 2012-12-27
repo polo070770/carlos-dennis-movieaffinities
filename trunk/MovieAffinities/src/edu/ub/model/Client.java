@@ -27,6 +27,7 @@ public class Client {
     private boolean estatStream;
     private int numPelisVistes;
     private ArrayList<Valoracio> valoracions_client;
+    private Data data_naixament;
 
     /**
      * Constructor del Client (USUARI) 
@@ -44,7 +45,7 @@ public class Client {
      * @param numPelisVistes nombre de pel·lícules vistes
      */
     public Client(int idClient, String nom, String nomUsuari, String dni,
-            String adreca, String password, boolean vip, int numFaltes) {
+            String adreca, String password, boolean vip, int numFaltes, Data data_naixament, String nacionalitat) {
         //Per defecte
         this.idClient = idClient;
         this.nom = nom;
@@ -53,15 +54,18 @@ public class Client {
         this.adreca = adreca;
         this.password = password;
         this.vip = vip;
+        
         //Adicionals
         this.numFaltes = numFaltes;
-        this.nacionalitat = "Desconocido";
+        this.nacionalitat = nacionalitat;
         this.cuotaMensual = 0;
         this.estatStream = false;
         this.numPelisVistes = 0;
         this.valoracions_client = new ArrayList();
+        this.data_naixament = data_naixament;
         
-    }
+    } 
+    
 
     /**
      * Constructor del Client (ADMINISTRADOR)

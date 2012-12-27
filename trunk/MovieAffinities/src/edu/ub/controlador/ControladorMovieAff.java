@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 /**
  * Clase ControladorMovieAff
+ *
  * @author Michel Dennis Quitaquis i Carlos Cortés Sánchez
  */
 public class ControladorMovieAff {
@@ -22,7 +23,7 @@ public class ControladorMovieAff {
     private ArrayList<Client> list_Clients;
     private Cataleg cataleg;
     private MovieAffDataManager dataManager;
-    Client administrador;
+    private Client administrador;
 
     /**
      * Constructor
@@ -38,6 +39,7 @@ public class ControladorMovieAff {
 
     /**
      * Afegeix un client a la llista de clients
+     *
      * @param client client que s'afegeix
      */
     public void afegirClient(Client client) {
@@ -48,7 +50,8 @@ public class ControladorMovieAff {
 
     /**
      * Retorna un string amb la llista de clients
-     * @return 
+     *
+     * @return
      */
     public String getStringListClients() {
         String r = "";
@@ -60,6 +63,7 @@ public class ControladorMovieAff {
 
     /**
      * Afegeix una pel·lícula al catàleg
+     *
      * @param pelicula pel·lícula que s'afegeix
      */
     public void afegirPelicula(Pelicula pelicula) {
@@ -68,7 +72,8 @@ public class ControladorMovieAff {
 
     /**
      * Retorna un string amb el catàleg
-     * @return 
+     *
+     * @return
      */
     public String getStringCataleg() {
         return cataleg.mostrarCataleg();
@@ -76,7 +81,8 @@ public class ControladorMovieAff {
 
     /**
      * Afegeix un actor a una pel·lícula
-     * @param actor actor de la pel·lícula 
+     *
+     * @param actor actor de la pel·lícula
      * @param idPelicula id de la pel·lícula
      */
     public void afegirActor(Artista actor, String idPelicula) {
@@ -85,6 +91,7 @@ public class ControladorMovieAff {
 
     /**
      * Afegeix un director a una pel·lícula
+     *
      * @param director director de la pel·lícula
      * @param idPelicula id de la pel·lícula
      */
@@ -94,6 +101,7 @@ public class ControladorMovieAff {
 
     /**
      * Afegeix un gènere a una pel·lícula
+     *
      * @param genere gènere de la pel·lícula
      * @param idPelicula id de la pel·lícula
      */
@@ -103,6 +111,7 @@ public class ControladorMovieAff {
 
     /**
      * Afegeix una productora a una pel·lícula
+     *
      * @param productora productora de la pel·lícula
      * @param idPelicula id de la pel·lícula
      */
@@ -112,31 +121,34 @@ public class ControladorMovieAff {
 
     /**
      * Afegeix un administrador
-     * @param administrador administrador 
+     *
+     * @param administrador administrador
      */
     public void asignarAdministrador(Client administrador) {
         this.administrador = administrador;
     }
-    
+
     /**
      * Afegeix una valoració a una pel·lícula
+     *
      * @param valoracio valoració de la pel·lícula
      * @param idPelicula id de la pel·lícula
      */
-    public void afegirValoracioPelicula(Valoracio valoracio, String idPelicula){
+    public void afegirValoracioPelicula(Valoracio valoracio, String idPelicula) {
         cataleg.addValoracioPelicula(valoracio, idPelicula);
     }
-    
+
     /**
      * Afegeix una valoració a un client
+     *
      * @param valoracio valoració que fa el client
      * @param idClient id de la pel·lícula
      */
-    public void afegirValoracioClient(Valoracio valoracio, int idClient){
+    public void afegirValoracioClient(Valoracio valoracio, int idClient) {
         boolean trobat = false;
         int i = 0;
-        while(!trobat && i < 7){
-            if(list_Clients.get(i).getIdClient() == idClient){
+        while (!trobat && i < 7) {
+            if (list_Clients.get(i).getIdClient() == idClient) {
                 list_Clients.get(i).addValoracio(valoracio);
                 trobat = true;
             }
@@ -144,25 +156,55 @@ public class ControladorMovieAff {
         }
     }
 
-    public boolean comprovaUser(String nomUsuari) {
-        boolean trobat = false;
-        int i = 0;
-        while(!trobat && i < list_Clients.size()){
-            if(list_Clients.get(i).getNomUsuari().equalsIgnoreCase(nomUsuari)){
-                trobat = true;
-            }
-            i++;
-        }
-        return trobat;
-    }
-    
-    
-    
-    public int obteTamany(){
+    public int obteTamanyClients() {
         return list_Clients.size();
     }
 
-    public boolean comprovaLogin(String nomUsuari, String pass) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public Client obteClient(int id) {
+        return list_Clients.get(id);
+    }
+
+    public Client obteAdministrador() {
+        return this.administrador;
+    }
+
+    public boolean comprovaNomUser(String nomUser) {
+        boolean trobat = false;
+        int i = 0;
+
+        while (!trobat && i < list_Clients.size()) {
+            if (list_Clients.get(i).getNomUsuari().equals(nomUser)) {
+                trobat = true;
+            }
+        }
+        return trobat;
+    }
+
+    public boolean comprovaAdmin(String nomUsuari, String pass) {
+        boolean admin = false;
+        if (this.administrador.getNomUsuari().equals(nomUsuari)
+                && this.administrador.getPassword().equals(pass)) {
+            admin = true;
+        }
+        return admin;
+    }
+
+    public int comprovaClients(String nomUsuari, String pass) {
+        int id = -2;
+        int i = 0;
+        Client client;
+
+        while (i < list_Clients.size() && id == -1) {
+            client = list_Clients.get(i);
+            if (client.getNomUsuari().equals(nomUsuari)) {
+                id = -1;
+                if (client.getPassword().equals(pass)) {
+                    id = client.getIdClient();
+                }
+            }
+
+        }
+        return id;
+
     }
 }
