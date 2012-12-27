@@ -20,12 +20,11 @@ public class MovieAffinities {
     ControladorMovieAff _ctrlMovieAff;
     Client userLogat;
 
-     static private enum OpcionsMenuPrincipal {
+    static private enum OpcionsMenuPrincipal {
 
         REGISTRE, LOGIN, VEURE_CATALEG, SORTIR
     };
 
-    
     static private enum OpcionsSubmenu1 {
 
         VEURE_CATALEG, VEURE_PELI, VALORAR_PELI, OBTENIR_PELI_NO_VISTA, SORTIR
@@ -35,14 +34,11 @@ public class MovieAffinities {
 
         ELIMINAR_PELI, VEURE_PELIS_MES_VALORADES, GENERAR_INFORME_CLIENT, SORTIR
     };
-    
-     
     // Declarem descripcions personalitzades per a les opcions del menú principal
     static private String[] descMenuPrincipal = {"Registrar-se",
         "Logar-se",
         "Veure catàleg de pel·lícules",
         "Sortir"};
-    
     // Declarem descripcions personalitzades per a les opcions del menú secundari 1
     static private String[] descMenu1 = {"Veure catàleg de pel·lícules",
         "Veure pel·lícula",
@@ -54,8 +50,8 @@ public class MovieAffinities {
         "Veure pel·lícules més valorades",
         "Generar informe de clients",
         "Sortir"};
-    
-/**
+
+    /**
      * Constructor
      */
     public MovieAffinities() {
@@ -64,9 +60,8 @@ public class MovieAffinities {
 
     }
 
- 
     public static void main(String[] args) {
-        
+
         // Creem un objecte per llegir des del teclat
         Scanner sc = new Scanner(System.in);
 
@@ -82,7 +77,7 @@ public class MovieAffinities {
         aplicacioUb.mostraCataleg();
 
     }
-    
+
     private void gestioMenuPrincipal(Scanner sc) {
 
         // Creem l'objecte per al menú. Li passem com a primer paràmetre el nom del menú
@@ -104,6 +99,7 @@ public class MovieAffinities {
             switch (opcio) {
                 case REGISTRE:
                     _ctrlMovieAff.afegirClient(registrar(sc));
+                    System.out.println("Registre correcte!");
                     mostraClients();
                     break;
                 case LOGIN:
@@ -119,7 +115,7 @@ public class MovieAffinities {
 
         } while (opcio != MovieAffinities.OpcionsMenuPrincipal.SORTIR);
     }
-    
+
     private void entradaClient(Scanner sc) {
 
         // Creem l'objecte per al menú. Li passem com a primer paràmetre el nom del menú
@@ -153,8 +149,7 @@ public class MovieAffinities {
 
         } while (opcio != MovieAffinities.OpcionsSubmenu1.SORTIR);
     }
-    
-    
+
     private void entradaAdmin(Scanner sc) {
 
         // Creem l'objecte per al menú. Li passem com a primer paràmetre el nom del menú
@@ -200,11 +195,11 @@ public class MovieAffinities {
     public void mostraCataleg() {
         System.out.println(_ctrlMovieAff.getStringCataleg());
     }
-    
+
     /**
-     * 
+     *
      */
-    public Client registrar(Scanner sc){
+    public Client registrar(Scanner sc) {
         String nom;
         System.out.println("\nNom?");
         nom = sc.nextLine();
@@ -212,7 +207,7 @@ public class MovieAffinities {
         String nacionalitat;
         System.out.println("Nacionalitat?");
         nacionalitat = sc.nextLine();
-        
+
         String adreca;
         System.out.println("Adreça?");
         adreca = sc.nextLine();
@@ -220,7 +215,7 @@ public class MovieAffinities {
         String dni;
         System.out.println("Dni?");
         dni = sc.next();
-        
+
         int dia;
         System.out.println("Dia de naixement?");
         dia = sc.nextInt();
@@ -231,48 +226,64 @@ public class MovieAffinities {
 
         int any;
         System.out.println("Any de naixement?");
-        any= sc.nextInt();
-        
-        String nomUsuari;
+        any = sc.nextInt();
+
+        String nomUser;
         System.out.println("Nom d'usuari?");
-        nomUsuari = sc.next();
-        boolean en_us = comprovaUser(nomUsuari);
-        while (en_us){
-          System.out.println("Nom ja en ús. Entra un altre:");
-          nomUsuari = sc.next();
-          en_us = comprovaUser(nomUsuari);  
+        nomUser = sc.next();
+        boolean en_us = comprovaUser(nomUser);
+        while (en_us) {
+            System.out.println("Nom usuari en ús, escriu un altre:");
+            nomUser = sc.next();
+            en_us = comprovaUser(nomUser);
         }
-        
+
         String pass;
-        System.out.println("Contrasenya?");
+        System.out.println("Password?");
         pass = sc.next();
-        
+
         Client client;
         Data data;
-        data = new Data(dia,mes,any);
-        client = new Client(_ctrlMovieAff.obteTamany() + 1, nom, nomUsuari, dni,
-            adreca, pass, false, 0);
-        
+        data = new Data(dia, mes, any);
+
+        int id = _ctrlMovieAff.obteTamanyClients() + 1;
+
+        client = new Client(id, nom, nomUser, dni,
+                adreca, pass, false, 0, data, nacionalitat);
+
         return client;
     }
-    
-    public void login(Scanner sc){
+
+    public void login(Scanner sc) {
         String nomUsuari;
         System.out.println("Nom d'usuari?");
         nomUsuari = sc.nextLine();
-        
+
         String pass;
         System.out.println("Contrasenya?");
         pass = sc.next();
-        
+
+        if (!_ctrlMovieAff.comprovaAdmin(nomUsuari, pass)) {
+            int nivell = _ctrlMovieAff.comprovaClients(nomUsuari, pass);
+            switch (nivell) {
+                case -2:
+                    System.out.println("Nom d'usuari mal introduit.");
+                case -1:
+                    System.out.println("Password mal introduit.");
+                default:
+                    userLogat = _ctrlMovieAff.obteClient(nivell);
+                    System.out.println("Client logat correctament.");
+                    entradaClient(sc);
+            }
+        } else {
+            userLogat = _ctrlMovieAff.obteAdministrador();
+            System.out.println("Administrador logat correctament.");
+            entradaAdmin(sc);
+        }
+
     }
-    
-    
-    private boolean comprovaUser(String nomUsuari) {
-        return _ctrlMovieAff.comprovaUser(nomUsuari);
-    }
-    
-    private boolean comprovaLogin(String nomUsuari, String pass) {
-        return _ctrlMovieAff.comprovaLogin(nomUsuari,pass);
+
+    private boolean comprovaUser(String nomUser) {
+        return _ctrlMovieAff.comprovaNomUser(nomUser);
     }
 }

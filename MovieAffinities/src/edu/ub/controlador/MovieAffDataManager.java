@@ -256,7 +256,7 @@ public class MovieAffDataManager {
 
         int faltes_1 = Integer.parseInt(faltes);
 
-        Client client = new Client(id_1, nom, usuari, dni, adreca, password, vip_1, faltes_1);
+        Client client = new Client(id_1, nom, usuari, dni, adreca, password, vip_1, faltes_1, null, "Desconocido");
 
         ctrlMovieAff.afegirClient(client);
 
