@@ -8,10 +8,11 @@ import java.util.ArrayList;
 
 /**
  * Clase Pelicula
+ *
  * @author Michel Dennis Quitaquis i Carlos Cortés Sánchez
  */
 public class Pelicula {
-    
+
     //Atributs per defecte
     private String titol;
     private String descripcio;
@@ -29,6 +30,7 @@ public class Pelicula {
 
     /**
      * Constructor
+     *
      * @param titol títol de la pel·lícula
      * @param descripcio descripció de la pel·lícula
      * @param idPelicula id de la pel·lícula
@@ -51,15 +53,25 @@ public class Pelicula {
 
     /**
      * Retorna l'id
-     * @return 
+     *
+     * @return
      */
     public String getIdPelicula() {
         return idPelicula;
     }
 
+    public String getTitol() {
+        return this.titol;
+    }
+
+    public ArrayList<Genere> getGeneres() {
+        return this.list_GeneresPelis;
+    }
+
     /**
      * Canvia la productora
-     * @param productora productora de la pel·lícula 
+     *
+     * @param productora productora de la pel·lícula
      */
     public void setProductora(Productora productora) {
         this.productora = productora;
@@ -67,6 +79,7 @@ public class Pelicula {
 
     /**
      * Afegeix un director
+     *
      * @param director director de la pel·lícula
      */
     public void addDirector(Artista director) {
@@ -75,6 +88,7 @@ public class Pelicula {
 
     /**
      * Afegeix un actor
+     *
      * @param actor actor de la pel·lícula
      */
     public void addActor(Artista actor) {
@@ -83,6 +97,7 @@ public class Pelicula {
 
     /**
      * Afegeix un gènere
+     *
      * @param genere gènere de la pel·lícula
      */
     public void addGenere(Genere genere) {
@@ -91,6 +106,7 @@ public class Pelicula {
 
     /**
      * Afegeix una valoració
+     *
      * @param valoracio valoració de la pel·lícula
      */
     public void addValoracio(Valoracio valoracio) {
@@ -99,6 +115,7 @@ public class Pelicula {
 
     /**
      * Mètode que retorna un string amb les dades d'una pel·lícula
+     *
      * @return r + s
      */
     @Override
@@ -131,5 +148,33 @@ public class Pelicula {
                 + "\nMinuts: " + this.minuts + "\nAny: " + this.anyPublicacio.toStringAnyPublicacio()
                 + "\nDescripció: " + this.descripcio;
         return r + s;
+    }
+
+    public boolean mateixTitol(String nomPeli) {
+        return this.titol.equals(nomPeli);
+    }
+
+    public void valorarPeli(int idClient, int puntuacio, Data dataValoracio) {
+        int idValoracio;
+        idValoracio = valoracions_peli.size();
+        Valoracio valoracioPeli = new Valoracio(this.idPelicula, idClient, puntuacio, dataValoracio, idValoracio);
+
+        valoracions_peli.add(valoracioPeli);
+    }
+
+    public boolean mateixGenere(String generePref) {
+        boolean b = false;
+        String tmp;
+        int i = 0;
+
+        while (i < list_GeneresPelis.size() && !b) {
+            tmp = list_GeneresPelis.get(i).getGenere();
+
+            if (tmp.equals(generePref)) {
+                b = true;
+            }
+            i++;
+        }
+        return b;
     }
 }
