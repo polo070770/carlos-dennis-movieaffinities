@@ -7,6 +7,7 @@ package edu.ub.controlador;
 import edu.ub.model.Artista;
 import edu.ub.model.Cataleg;
 import edu.ub.model.Client;
+import edu.ub.model.Data;
 import edu.ub.model.Genere;
 import edu.ub.model.Pelicula;
 import edu.ub.model.Productora;
@@ -42,10 +43,9 @@ public class ControladorMovieAff {
      *
      * @param client client que s'afegeix
      */
-    public void afegirClient(Client client) {
-
+    public String afegirClient(Client client) {
         list_Clients.add(client);
-
+        return client.toString();
     }
 
     /**
@@ -168,14 +168,21 @@ public class ControladorMovieAff {
         return this.administrador;
     }
 
+    public ArrayList<Genere> obteGeneresPelicula(int pos) {
+
+        return cataleg.getGeneresPelicula(pos);
+    }
+
     public boolean comprovaNomUser(String nomUser) {
         boolean trobat = false;
         int i = 0;
-
+        Client client;
         while (!trobat && i < list_Clients.size()) {
-            if (list_Clients.get(i).getNomUsuari().equals(nomUser)) {
+            client = list_Clients.get(i);
+            if (client.getNomUsuari().equals(nomUser)) {
                 trobat = true;
             }
+            i++;
         }
         return trobat;
     }
@@ -193,8 +200,7 @@ public class ControladorMovieAff {
         int id = -2;
         int i = 0;
         Client client;
-
-        while (i < list_Clients.size() && id == -1) {
+        while (i < list_Clients.size() && id == -2) {
             client = list_Clients.get(i);
             if (client.getNomUsuari().equals(nomUsuari)) {
                 id = -1;
@@ -202,9 +208,33 @@ public class ControladorMovieAff {
                     id = client.getIdClient();
                 }
             }
-
+            i++;
         }
         return id;
 
+    }
+
+    public String visualitzaPelicula(int posicio, Client userLogat) {
+        return cataleg.visualitzarPelicula(posicio, userLogat);
+    }
+
+    public String trobarNomPeli(String nomPeli) {
+        return cataleg.trobarNomPeli(nomPeli);
+    }
+
+    public String obteIdPelicula(int opt) {
+        return cataleg.getIdPelicula(opt);
+    }
+
+    public void puntuaPelicula(String idPelicula, int idClient, int puntuacio, Data data_act) {
+        cataleg.puntuaPelicula(idPelicula, idClient, puntuacio, data_act);
+    }
+
+    public ArrayList<Genere> obteGenerePeli(int pos) {
+        return cataleg.getGeneresPelicula(pos);
+    }
+
+    public String obtindreRecomanacions(Client userLogat) {
+        return cataleg.obtindreRecomanacions(userLogat);
     }
 }

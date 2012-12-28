@@ -6,6 +6,7 @@ package edu.ub.model;
 
 /**
  * Clase Valoracio
+ *
  * @author Michel Dennis Quitaquis i Carlos Cortés Sánchez
  */
 public class Valoracio {
@@ -18,6 +19,7 @@ public class Valoracio {
 
     /**
      * Constructor
+     *
      * @param idPelicula id de la pel·lícula
      * @param idClient id del client
      * @param valoracio valoració de la pel·lícula
@@ -34,7 +36,8 @@ public class Valoracio {
 
     /**
      * Retorna l'id de la pel·lícula
-     * @return 
+     *
+     * @return
      */
     public String getIdPelicula() {
         return idPelicula;
@@ -42,7 +45,8 @@ public class Valoracio {
 
     /**
      * Canvia l'id de la pel·lícula
-     * @param idPelicula 
+     *
+     * @param idPelicula
      */
     public void setIdPelicula(String idPelicula) {
         this.idPelicula = idPelicula;
@@ -50,7 +54,8 @@ public class Valoracio {
 
     /**
      * Retorna l'id del client
-     * @return 
+     *
+     * @return
      */
     public int getIdClient() {
         return idClient;
@@ -58,7 +63,8 @@ public class Valoracio {
 
     /**
      * Canvia l'id del client
-     * @param idClient 
+     *
+     * @param idClient
      */
     public void setIdClient(int idClient) {
         this.idClient = idClient;
@@ -66,7 +72,8 @@ public class Valoracio {
 
     /**
      * Retorna la valoració
-     * @return 
+     *
+     * @return
      */
     public int getValoracio() {
         return valoracio;
@@ -74,7 +81,8 @@ public class Valoracio {
 
     /**
      * Canvia la valoració
-     * @param valoracio 
+     *
+     * @param valoracio
      */
     public void setValoracio(int valoracio) {
         this.valoracio = valoracio;
@@ -82,7 +90,8 @@ public class Valoracio {
 
     /**
      * Retorna la data
-     * @return 
+     *
+     * @return
      */
     public Data getDataValoracio() {
         return dataValoracio;
@@ -90,7 +99,8 @@ public class Valoracio {
 
     /**
      * Canvia la data
-     * @param dataValoracio 
+     *
+     * @param dataValoracio
      */
     public void setDataValoracio(Data dataValoracio) {
         this.dataValoracio = dataValoracio;
@@ -98,7 +108,8 @@ public class Valoracio {
 
     /**
      * Retorna l'id
-     * @return 
+     *
+     * @return
      */
     public int getId() {
         return id;
@@ -106,7 +117,8 @@ public class Valoracio {
 
     /**
      * Canvia l'id
-     * @param id 
+     *
+     * @param id
      */
     public void setId(int id) {
         this.id = id;

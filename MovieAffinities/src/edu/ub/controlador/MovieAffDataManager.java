@@ -3,7 +3,6 @@ package edu.ub.controlador;
 import edu.ub.controlador.ControladorMovieAff;
 import edu.ub.model.Actor;
 import edu.ub.vista.MovieAffXMLParser;
-
 import edu.ub.model.Client;
 import edu.ub.model.Pelicula;
 import edu.ub.model.Artista;

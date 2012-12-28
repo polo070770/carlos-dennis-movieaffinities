@@ -6,6 +6,7 @@ package edu.ub.model;
 
 /**
  * Calse Genere
+ *
  * @author Michel Dennis Quitaquis i Carlos Cortés Sánchez
  */
 public class Genere {
@@ -15,6 +16,7 @@ public class Genere {
 
     /**
      * Constructor
+     *
      * @param id id del gènere
      * @param nom nom del gènere
      */
@@ -25,7 +27,8 @@ public class Genere {
 
     /**
      * Retorna l'id
-     * @return 
+     *
+     * @return
      */
     public int getId() {
         return id;
@@ -33,7 +36,8 @@ public class Genere {
 
     /**
      * Canvia l'id
-     * @param id 
+     *
+     * @param id
      */
     public void setId(int id) {
         this.id = id;
@@ -41,7 +45,8 @@ public class Genere {
 
     /**
      * Retorna el nom
-     * @return 
+     *
+     * @return
      */
     public String getNom() {
         return nom;
@@ -49,17 +54,19 @@ public class Genere {
 
     /**
      * Canvia el nom
-     * @param nom 
+     *
+     * @param nom
      */
     public void setNom(String nom) {
         this.nom = nom;
     }
-    
+
     /**
      * Retorna el gènere
-     * @return 
+     *
+     * @return
      */
-    public String getGenere(){
+    public String getGenere() {
         return this.nom;
     }
 }

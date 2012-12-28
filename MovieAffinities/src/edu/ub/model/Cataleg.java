@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Clase Cataleg
+ *
  * @author Michel Dennis Quitaquis i Carlos Cortés Sánchez
  */
 public class Cataleg {
@@ -23,7 +24,8 @@ public class Cataleg {
 
     /**
      * Métode que mostra el catàleg, retornant una llista de pel·lícules
-     * @return r 
+     *
+     * @return r
      */
     public String mostrarCataleg() {
         String r = "";
@@ -44,22 +46,72 @@ public class Cataleg {
         return "";
     }
 
-    public int trobarNomPeli(String nomPeli) {
-        return 0;
+    public String trobarNomPeli(String nomPeli) {
+        boolean trobat = false;
+        int i = 0;
+        String id = null;
+        Pelicula pelicula;
+
+        while (i < list_Pelis.size() && !trobat) {
+
+            pelicula = list_Pelis.get(i);
+            trobat = pelicula.mateixTitol(nomPeli);
+
+            if (trobat) {
+                id = pelicula.getIdPelicula();
+            }
+
+            i++;
+        }
+
+        return id;
     }
 
-    public void visualitzarPelicula(int posicio, Client c) {
+    public String visualitzarPelicula(int posicio, Client c) {
+        Pelicula tmp;
+        tmp = list_Pelis.get(posicio);
+
+        c.peliculaVista(tmp);
+
+        return tmp.toString();
+
     }
 
-    public void puntuaPelicula(String idClient, int puntuacio, Pelicula pelicula) {
+    public void puntuaPelicula(String idPelicula, int idClient, int puntuacio, Data data_act) {
+        Pelicula pelicula;
+        pelicula = getPelicula(idPelicula);
+
+        pelicula.valorarPeli(idClient, puntuacio, data_act);
+
     }
 
     public String obtindreRecomanacions(Client userLogat) {
-        return "";
+        String generePref = userLogat.getGenerePreferit();
+        String pelisRecomanades = "";
+
+        for (Pelicula pel : list_Pelis) {
+            boolean trobat = false;
+            String titol_tmp;
+            boolean haVist;
+
+            trobat = pel.mateixGenere(generePref);
+
+            if (trobat) {
+                titol_tmp = pel.getTitol();
+
+                haVist = userLogat.haVistPeli(titol_tmp);
+
+                if (!haVist) {
+                    pelisRecomanades += pel.toString();
+                }
+            }
+        }
+        return pelisRecomanades;
     }
 
     /**
      * Mètode per afegir una pel·lícula
+     *
      * @param pelicula pel·lícula que s'afegeix
      */
     public void addPelicula(Pelicula pelicula) {
@@ -68,89 +120,117 @@ public class Cataleg {
 
     /**
      * Mètode per afegir un director a una pel·lícula
+     *
      * @param director director de la pel·lícula
      * @param idPelicula id de la pel·lícula
      */
     public void addDirectorPelicula(Artista director, String idPelicula) {
         boolean trobat = false;
         int i = 0;
-        while(!trobat && i < list_Pelis.size()){
-            if(list_Pelis.get(i).getIdPelicula().equalsIgnoreCase(idPelicula)){
+        while (!trobat && i < list_Pelis.size()) {
+            if (list_Pelis.get(i).getIdPelicula().equalsIgnoreCase(idPelicula)) {
                 list_Pelis.get(i).addDirector(director);
                 trobat = true;
             }
-            i ++;
+            i++;
         }
     }
 
     /**
      * Mètode per afegir un actor a una pel·lícula
+     *
      * @param actor actor de la pel·lícula
      * @param idPelicula id de la pel·lícula
      */
     public void addActorPelicula(Artista actor, String idPelicula) {
         boolean trobat = false;
         int i = 0;
-        while(!trobat && i < list_Pelis.size()){
-            if(list_Pelis.get(i).getIdPelicula().equalsIgnoreCase(idPelicula)){
+        while (!trobat && i < list_Pelis.size()) {
+            if (list_Pelis.get(i).getIdPelicula().equalsIgnoreCase(idPelicula)) {
                 list_Pelis.get(i).addActor(actor);
                 trobat = true;
             }
-            i ++;
+            i++;
         }
     }
-    
+
     /**
      * Mètode per afegir un gènere a una pel·lícula
+     *
      * @param genere gènere de la pel·lícula
      * @param idPelicula id de la pel·lícula
      */
-    public void addGenerePelicula(Genere genere, String idPelicula){
+    public void addGenerePelicula(Genere genere, String idPelicula) {
         boolean trobat = false;
         int i = 0;
-        while(!trobat && i < list_Pelis.size()){
-            if(list_Pelis.get(i).getIdPelicula().equalsIgnoreCase(idPelicula)){
+        while (!trobat && i < list_Pelis.size()) {
+            if (list_Pelis.get(i).getIdPelicula().equalsIgnoreCase(idPelicula)) {
                 list_Pelis.get(i).addGenere(genere);
                 trobat = true;
             }
-            i ++;
+            i++;
         }
     }
-    
+
     /**
      * Mètode per afegir una productora a una pel·lícula
+     *
      * @param productora productora de la pel·lícula
      * @param idPelicula id de la pel·lícula
      */
-    public void addProductoraPelicula(Productora productora, String idPelicula){
+    public void addProductoraPelicula(Productora productora, String idPelicula) {
         boolean trobat = false;
         int i = 0;
-        while(!trobat && i < list_Pelis.size()){
-            if(list_Pelis.get(i).getIdPelicula().equalsIgnoreCase(idPelicula)){
+        while (!trobat && i < list_Pelis.size()) {
+            if (list_Pelis.get(i).getIdPelicula().equalsIgnoreCase(idPelicula)) {
                 list_Pelis.get(i).setProductora(productora);
                 trobat = true;
             }
-            i ++;
+            i++;
         }
     }
-    
+
     /**
      * Mètode per afegir una valoració a una pel·lícula
+     *
      * @param valoracio valoració de la pel·lícula
      * @param idPelicula id de la pel·lícula
      */
-    public void addValoracioPelicula(Valoracio valoracio, String idPelicula){
+    public void addValoracioPelicula(Valoracio valoracio, String idPelicula) {
         boolean trobat = false;
         int i = 0;
-        while(!trobat && i < list_Pelis.size()){
-            if(list_Pelis.get(i).getIdPelicula().equalsIgnoreCase(idPelicula)){
+        while (!trobat && i < list_Pelis.size()) {
+            if (list_Pelis.get(i).getIdPelicula().equalsIgnoreCase(idPelicula)) {
                 list_Pelis.get(i).addValoracio(valoracio);
                 trobat = true;
             }
-            i ++;
+            i++;
         }
     }
-    
-    
-    
+
+    public String getIdPelicula(int opt) {
+        String tmp = null;
+        if (opt < list_Pelis.size()) {
+            tmp = list_Pelis.get(opt).getIdPelicula();
+        }
+        return tmp;
+    }
+
+    public Pelicula getPelicula(String idPelicula) {
+        boolean trobat = false;
+        int i = 0;
+        Pelicula pelicula = null;
+        while (i < list_Pelis.size() && !trobat) {
+            pelicula = list_Pelis.get(i);
+            if (pelicula.getIdPelicula().equals(idPelicula)) {
+                trobat = true;
+            }
+            i++;
+        }
+        return pelicula;
+    }
+
+    public ArrayList<Genere> getGeneresPelicula(int pos) {
+        return list_Pelis.get(pos).getGeneres();
+    }
 }
