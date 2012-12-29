@@ -48,10 +48,20 @@ public class Data {
         this.any = any;
     }
 
+    /**
+     * Converteix a string l'any de publicació
+     * 
+     * @return 
+     */
     public String toStringAnyPublicacio() {
         return String.valueOf(this.any);
     }
 
+    /**
+     * Obté el mes actual
+     * 
+     * @return 
+     */
     public int obtenirMesActual() {
         return this.mes;
     }

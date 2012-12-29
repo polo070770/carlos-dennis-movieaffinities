@@ -13,7 +13,7 @@ public class Actor extends Artista {
 
     /**
      * Constructor
-     *
+     * 
      * @param nom nom de l'actor
      * @param id id de l'actor
      */

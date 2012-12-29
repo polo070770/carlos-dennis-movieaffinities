@@ -60,10 +60,20 @@ public class Pelicula {
         return idPelicula;
     }
 
+    /**
+     * Retorna el títol
+     * 
+     * @return 
+     */
     public String getTitol() {
         return this.titol;
     }
 
+    /**
+     * Retorna els generes
+     * 
+     * @return 
+     */
     public ArrayList<Genere> getGeneres() {
         return this.list_GeneresPelis;
     }
@@ -150,10 +160,23 @@ public class Pelicula {
         return r + v;
     }
 
+    /**
+     * Comprova si els títols coincideixen
+     * 
+     * @param nomPeli títol de la pel·lícula
+     * @return 
+     */
     public boolean mateixTitol(String nomPeli) {
         return this.titol.equals(nomPeli);
     }
 
+    /**
+     * Valora una pel·lícula
+     * 
+     * @param idClient identificador del client
+     * @param puntuacio valoració de la pel·lícula
+     * @param dataValoracio data actual
+     */
     public void valorarPeli(int idClient, int puntuacio, Data dataValoracio) {
         int idValoracio;
         idValoracio = valoracions_peli.size() + 1;
@@ -161,6 +184,12 @@ public class Pelicula {
         valoracions_peli.add(valoracioPeli);
     }
 
+    /**
+     * Compara els generes de les pel·lícules amb els generes preferits del client
+     * 
+     * @param generePref genere preferit del client
+     * @return 
+     */
     public boolean mateixGenere(String generePref) {
         boolean mateixGenere = false;
         String tmp;
@@ -179,6 +208,11 @@ public class Pelicula {
         return mateixGenere;
     }
 
+    /**
+     * Busca les pel·lícules amb valoracions baixes
+     * 
+     * @return 
+     */
     public boolean valoracioBaixa() {
         int total, tmp1, nValoracions;
         boolean tmp2;
@@ -203,6 +237,11 @@ public class Pelicula {
         return tmp2;
     }
 
+    /**
+     * Calcula el rating d'una pel·lícula
+     * 
+     * @return 
+     */
     public float valoracio() {
         int v, total, nValoracions;
         float rating;

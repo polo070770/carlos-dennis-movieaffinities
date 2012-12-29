@@ -35,10 +35,16 @@ public class Cataleg {
         return r;
     }
 
+    
     public String mostrarPelNoPrefNoVistes(String g) {
         return "";
     }
 
+    /**
+     * Dona de baixa una pel·lícula
+     * 
+     * @return 
+     */
     public String baixaPelicula() {
         String s = "";
         boolean esborro;
@@ -59,6 +65,11 @@ public class Cataleg {
         return s;
     }
 
+    /**
+     * Retorna les pel·lícules amb les valoracions més altes
+     * 
+     * @return 
+     */
     public String ranking() {
         String s = "";
         int i = 5;
@@ -76,6 +87,12 @@ public class Cataleg {
         return s;
     }
 
+    /**
+     * Busca una pel·lícula segons un títol donat
+     * 
+     * @param nomPeli títol de la pel·lícula
+     * @return 
+     */
     public String trobarNomPeli(String nomPeli) {
         boolean trobat = false;
         int i = 0;
@@ -97,6 +114,13 @@ public class Cataleg {
         return id;
     }
 
+    /**
+     * Visualitza una pel·lícula
+     * 
+     * @param posicio posició de la pel·lícula
+     * @param c client que veu la pel·lícula
+     * @return 
+     */
     public String visualitzarPelicula(int posicio, Client c) {
         Pelicula tmp;
         tmp = list_Pelis.get(posicio);
@@ -107,6 +131,14 @@ public class Cataleg {
 
     }
 
+    /**
+     * Valora una pel·lícula
+     * 
+     * @param idPelicula identificador de la pel·lícula
+     * @param idClient identificador del client
+     * @param puntuacio valoració de la pel·lícula
+     * @param data_act data actual
+     */
     public void puntuaPelicula(String idPelicula, int idClient, int puntuacio, Data data_act) {
         Pelicula pelicula;
         pelicula = getPelicula(idPelicula);
@@ -115,6 +147,12 @@ public class Cataleg {
 
     }
 
+    /**
+     * Obté pel·lícules recomanades per a un client
+     * 
+     * @param userLogat
+     * @return 
+     */
     public String obtindreRecomanacions(Client userLogat) {
         String generePref = userLogat.generePreferit();
         String pelisRecomanades = "";
@@ -238,6 +276,12 @@ public class Cataleg {
         }
     }
 
+    /**
+     * Obté l'identificador d'una pel·lícula
+     * 
+     * @param opt posició de la pel·lícula
+     * @return 
+     */
     public String getIdPelicula(int opt) {
         String tmp = null;
         if (opt < list_Pelis.size()) {
@@ -246,6 +290,12 @@ public class Cataleg {
         return tmp;
     }
 
+    /**
+     * Obté una pel·lícula
+     * 
+     * @param idPelicula identificador de la pel·lícula
+     * @return 
+     */
     public Pelicula getPelicula(String idPelicula) {
         boolean trobat = false;
         int i = 0;
@@ -260,6 +310,12 @@ public class Cataleg {
         return pelicula;
     }
 
+    /**
+     * Obté els generes d'una pel·lícula
+     *  
+     * @param pos posició de la pel·lícula
+     * @return 
+     */
     public ArrayList<Genere> getGeneresPelicula(int pos) {
         return list_Pelis.get(pos).getGeneres();
     }

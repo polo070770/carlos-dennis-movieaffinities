@@ -330,6 +330,14 @@ public class Client {
         this.valoracions_client.add(valoracio);
     }
 
+    /**
+     * Métode que indica que un client vol veure una pel·lícula d'un dels seus
+     * generes preferits. Suma el cost de la pel·lícula a la cuota mensual.
+     * Si cal posa una falta.
+     * 
+     * @param generesPelis llista de generes
+     * @return 
+     */
     public boolean volVeurePeli(ArrayList<Genere> generesPelis) {
         boolean falta = false;
 
@@ -354,10 +362,22 @@ public class Client {
         return falta;
     }
 
+    /**
+     * Afegeix una pel·lícula a la llista de pel·lícules vistes pel client
+     * 
+     * @param tmp pel·lícula que s'acaba de veure
+     */
     public void peliculaVista(Pelicula tmp) {
         list_PelisVistes.add(tmp);
     }
 
+    /**
+     * Valora una pel·lícula
+     * 
+     * @param idPelicula identificador de la pel·lícula
+     * @param puntuacio valoració de la pel·lícula
+     * @param dataValoracio data en que es fa la valoració
+     */
     public void puntuaPelicula(String idPelicula, int puntuacio, Data dataValoracio) {
         int idValoracio;
         idValoracio = valoracions_client.size();
@@ -366,6 +386,11 @@ public class Client {
         valoracions_client.add(valoracio);
     }
 
+    /**
+     * Estableix els generes preferits d'un client
+     * 
+     * @return 
+     */
     public String generePreferit() {
         String generePref, genere_1, genere_2;
         generePref = "";
@@ -400,6 +425,12 @@ public class Client {
         return generePref;
     }
 
+    /**
+     * Comprova si una pel·lícula ja ha sigut vista per un client
+     * 
+     * @param titol_tmp títol de la pel·lícula
+     * @return 
+     */
     public boolean haVistPeli(String titol_tmp) {
         boolean vista = false;
         int i = 0;
@@ -415,6 +446,11 @@ public class Client {
         return vista;
     }
 
+    /**
+     * Mostra l'informe generat
+     * 
+     * @return 
+     */
     public String mostrarInforme() {
         String r;
         r = "\nClient ID: " + this.idClient + "\n-----------------"
