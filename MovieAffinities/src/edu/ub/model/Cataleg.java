@@ -52,11 +52,16 @@ public class Cataleg {
         tamany = list_Pelis.size();
         i = 0;
         Pelicula pelicula;
+        //Recorrem el catàleg
         while (i < tamany) {
+            //obtenim la pel·lícula actual
             pelicula = list_Pelis.get(i);
+            //consultem si la seva valoració es baixa
             esborro = pelicula.valoracioBaixa();
+            //si ho es ...
             if (esborro) {
                 s += pelicula.toString();
+                //esborrem
                 list_Pelis.remove(i);
                 tamany--;
             }
@@ -74,9 +79,12 @@ public class Cataleg {
         String s = "";
         int i = 5;
         float valora = 0;
-
+        
+        //Mentre la valoració sigui més gran que 3 ...
+        //(considerem que si una valoració es inferior a 3, aquesta pel·lícula té una valoració dolenta)
         while (i >= 3) {
             for (Pelicula pel : list_Pelis) {
+                //per a cada pel·lícula calculem el ranking
                 valora = pel.valoracio();
                 if (valora >= i && valora < (i + 1)) {
                     s += "\n" + pel.toString();
@@ -98,13 +106,15 @@ public class Cataleg {
         int i = 0;
         String id = null;
         Pelicula pelicula;
-
+        //Mentre tinguem pel·lícules i no haguem trobat el títol buscat ...
         while (i < list_Pelis.size() && !trobat) {
-
+            //obtenim la pel·lícula actual
             pelicula = list_Pelis.get(i);
+            //comparem títols
             trobat = pelicula.mateixTitol(nomPeli);
-
+            //si son iguals els títols ...
             if (trobat) {
+                //obtenim l'identificador de la pel·lícula
                 id = pelicula.getIdPelicula();
             }
 
@@ -124,7 +134,7 @@ public class Cataleg {
     public String visualitzarPelicula(int posicio, Client c) {
         Pelicula tmp;
         tmp = list_Pelis.get(posicio);
-
+        //marquem la pel·lícula com vista
         c.peliculaVista(tmp);
 
         return tmp.toString();
@@ -142,7 +152,7 @@ public class Cataleg {
     public void puntuaPelicula(String idPelicula, int idClient, int puntuacio, Data data_act) {
         Pelicula pelicula;
         pelicula = getPelicula(idPelicula);
-
+        
         pelicula.valorarPeli(idClient, puntuacio, data_act);
 
     }
@@ -156,19 +166,20 @@ public class Cataleg {
     public String obtindreRecomanacions(Client userLogat) {
         String generePref = userLogat.generePreferit();
         String pelisRecomanades = "";
-
+        //Per a cada pel·lícula del catàleg ...
         for (Pelicula pelicula : list_Pelis) {
             boolean trobat;
             String titol_tmp;
             boolean haVist;
-
+            //comparem generes de pel·lícules
             trobat = pelicula.mateixGenere(generePref);
-
+            //si coincideixen ...
             if (trobat) {
+                //obtenim el títol
                 titol_tmp = pelicula.getTitol();
-
+                //comprovem si ja s'ha vist
                 haVist = userLogat.haVistPeli(titol_tmp);
-
+                //si no s'ha vist, l'afegim a la llista de pel·lícules recomanades
                 if (!haVist) {
                     pelisRecomanades += pelicula.toString();
                 }

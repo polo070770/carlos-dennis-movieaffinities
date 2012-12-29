@@ -309,6 +309,7 @@ public class MovieAffinities {
      * @param sc 
      */
     public void registrar(Scanner sc) {
+        //introduim les dades del registre
         String nom;
         System.out.println("\nNom?");
         nom = sc.nextLine();
@@ -340,6 +341,7 @@ public class MovieAffinities {
         String nomUser;
         System.out.println("Nom d'usuari?");
         nomUser = sc.next();
+        //comprovem la disponibilitat del nom d'usuari
         boolean en_us = comprovaUser(nomUser);
         while (en_us) {
             System.out.println("Nom usuari en ús, escriu un altre:");
@@ -350,7 +352,8 @@ public class MovieAffinities {
         String pass;
         System.out.println("Password?");
         pass = sc.next();
-
+        
+        //afegim la data de naixment del client
         Client client;
         Data data;
         data = new Data(dia, mes, any);
@@ -374,6 +377,7 @@ public class MovieAffinities {
      * @param sc 
      */
     public void login(Scanner sc) {
+        //introduim les dades del login
         String nomUser;
         System.out.println("Nom d'usuari?");
         nomUser = sc.next();
@@ -383,18 +387,23 @@ public class MovieAffinities {
         pass = sc.next();
 
         boolean admin;
+        //comprovem si es administrador
         admin = _ctrlMovieAff.comprovaAdmin(nomUser, pass);
-
+        //si no ho es ...
         if (!admin) {
+            //comprovem el nom d'usuari i la contrasenya del client
             int nivell = _ctrlMovieAff.comprovaClients(nomUser, pass);
             switch (nivell) {
                 case -2:
+                    //error d'usuari
                     System.err.println("Nom d'usuari incorrecte.");
                     break;
                 case -1:
+                    //error de contrasenya
                     System.err.println("Contrasenya incorrecta.");
                     break;
                 default:
+                    //client logat correctament
                     userLogat = _ctrlMovieAff.obteClient(nivell - 1);
                     System.out.println("\nClient logat correctament.\n");
                     entradaClient(sc);
@@ -413,9 +422,9 @@ public class MovieAffinities {
      * @param sc 
      */
     public void veurePelicula(Scanner sc) {
-
+        //si no hi ha un stream obert
         if (!userLogat.isEstatStream()) {
-
+            //mostrem el catàleg
             mostrarCataleg();
 
             System.out.println("\nQuina pel·lícula vols visualitzar.");
@@ -423,7 +432,7 @@ public class MovieAffinities {
             int posicio = sc.nextInt();
 
             ArrayList<Genere> generesPeli = _ctrlMovieAff.obteGeneresPeli(posicio);
-
+            //si ha vist més de dues pel·lícules, li posem una falta
             if (userLogat.volVeurePeli(generesPeli)) {
                 System.err.println("\nHas vist més de dues pel·lícules avui, tens una falta!");
             }
@@ -434,7 +443,7 @@ public class MovieAffinities {
             userLogat.setEstatStream(false);
 
             System.out.println("\t\n......streaming tancat.\n");
-
+        //si hi ha un stream obert, avisem
         } else {
             System.out.println("Tens un altre canal de streaming obert!");
         }
@@ -499,7 +508,7 @@ public class MovieAffinities {
             System.out.println("\nQuina es la teva valoracio? (Entre 1 i 5)");
             System.out.print(">>");
             puntuacio = sc.nextInt();
-
+            //mentre la valoració no estigui entre 1 i 5
             while (puntuacio < 1 || puntuacio > 5) {
                 System.err.println("\nValoració incorrecte. Introdueix una valoració. (Entre 1 i 5)");
                 System.out.print(">>");
@@ -508,7 +517,7 @@ public class MovieAffinities {
 
             Calendar c = Calendar.getInstance();
             Data data_act = new Data(c.get(Calendar.DATE), c.get(Calendar.MONTH), c.get(Calendar.YEAR));
-
+            
             userLogat.puntuaPelicula(idPelicula, puntuacio, data_act);
 
             idClient = userLogat.getIdClient();
