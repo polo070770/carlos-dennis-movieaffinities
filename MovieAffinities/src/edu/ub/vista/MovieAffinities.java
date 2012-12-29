@@ -109,8 +109,7 @@ public class MovieAffinities {
             // Fem les accions necessàries
             switch (opcio) {
                 case REGISTRE:
-                    System.out.println(_ctrlMovieAff.afegirClient(registrar(sc)));
-                    System.out.println("\nRegistre correcte!\n");
+                    registrar(sc);
                     break;
                 case LOGIN:
                     //LOGIN
@@ -220,6 +219,7 @@ public class MovieAffinities {
                     mostrarCataleg();
                     break;
                 case VEURE_PELIS_RECOMANADES:
+                    obtenirRecomanacio();
                     break;
                 case ENRERE:
                     break;
@@ -277,13 +277,13 @@ public class MovieAffinities {
      * Mostra el catàleg de pel·lícules
      */
     public void mostrarCataleg() {
-        System.out.println(_ctrlMovieAff.getStringCataleg());
+        System.out.println(_ctrlMovieAff.mostrarCataleg());
     }
 
     /**
      *
      */
-    public Client registrar(Scanner sc) {
+    public void registrar(Scanner sc) {
         String nom;
         System.out.println("\nNom?");
         nom = sc.nextLine();
@@ -334,21 +334,29 @@ public class MovieAffinities {
 
         client = new Client(id, nom, nomUser, dni,
                 adreca, pass, false, 0, data, nacionalitat);
+        
+        System.out.println(client.toString());
 
-        return client;
+        _ctrlMovieAff.afegirClient(client);
+        
+        System.out.println("\nRegistre correcte!\n");
+
     }
 
     public void login(Scanner sc) {
-        String nomUsuari;
+        String nomUser;
         System.out.println("Nom d'usuari?");
-        nomUsuari = sc.nextLine();
+        nomUser = sc.next();
 
         String pass;
         System.out.println("Contrasenya?");
         pass = sc.next();
+        
+        boolean admin;
+        admin = _ctrlMovieAff.comprovaAdmin(nomUser, pass);
 
-        if (!_ctrlMovieAff.comprovaAdmin(nomUsuari, pass)) {
-            int nivell = _ctrlMovieAff.comprovaClients(nomUsuari, pass);
+        if (!admin) {
+            int nivell = _ctrlMovieAff.comprovaClients(nomUser, pass);
             switch (nivell) {
                 case -2:
                     System.err.println("Nom d'usuari mal introduit.");
@@ -464,7 +472,7 @@ public class MovieAffinities {
         System.out.println(_ctrlMovieAff.obtindreRecomanacions(userLogat));
     }
 
-    private boolean comprovaUser(String nomUser) {
+    public boolean comprovaUser(String nomUser) {
 
         return _ctrlMovieAff.comprovaNomUser(nomUser);
 

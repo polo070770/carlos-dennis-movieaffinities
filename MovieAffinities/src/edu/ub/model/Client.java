@@ -336,8 +336,8 @@ public class Client {
         this.numPelisVistes++;
         this.estatStream = true;
 
-        for (Genere g : generesPelis) {
-            generesVistes.add(g);
+        for (Genere genere : generesPelis) {
+            generesVistes.add(genere);
         }
 
         if (getNumPelisVistes() > 2) {
@@ -366,12 +366,9 @@ public class Client {
         valoracions_client.add(valoracio);
     }
 
-    public void generePreferit() {
-    }
-
-    public String getGenerePreferit() {
+    public String generePreferit() {
         String generePref, genere_1, genere_2;
-        generePref = null;
+        generePref = "";
 
         int i, j;
         i = 0;
@@ -406,12 +403,12 @@ public class Client {
     public boolean haVistPeli(String titol_tmp) {
         boolean vista = false;
         int i = 0;
-        Pelicula peli;
+        Pelicula pelicula;
 
         while (i < list_PelisVistes.size() && !vista) {
 
-            peli = list_PelisVistes.get(i);
-            vista = peli.mateixTitol(titol_tmp);
+            pelicula = list_PelisVistes.get(i);
+            vista = pelicula.mateixTitol(titol_tmp);
             i++;
         }
 
