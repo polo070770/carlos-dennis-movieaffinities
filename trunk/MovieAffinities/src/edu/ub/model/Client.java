@@ -340,22 +340,31 @@ public class Client {
      */
     public boolean volVeurePeli(ArrayList<Genere> generesPelis) {
         boolean falta = false;
-
+        
+        //augmentem el nombre de pel·lícules 
         this.numPelisVistes++;
+        //posem l'estat del stream com a obert
         this.estatStream = true;
-
+        
+        //per cada genere en la llista de generes
         for (Genere genere : generesPelis) {
+            //afegim el genere de la pel·lícula al la llista de generes
             generesVistes.add(genere);
         }
-
+        //si el nombre de pel·lícules es major que 2 ...
         if (getNumPelisVistes() > 2) {
+            //posem una falta
             this.numFaltes++;
             falta = true;
         }
 
+        //Si es vip ...
         if (isVip()) {
+            //cobrem la pel·lícula a 0.9
             this.cuotaMensual = this.cuotaMensual + 0.9;
+        //si no ...
         } else {
+            //la cobrem a 1
             this.cuotaMensual = this.cuotaMensual + 1;
         }
 

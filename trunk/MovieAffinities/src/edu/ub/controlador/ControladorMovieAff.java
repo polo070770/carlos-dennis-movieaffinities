@@ -182,9 +182,13 @@ public class ControladorMovieAff {
         boolean trobat = false;
         int i = 0;
         Client client;
+        //Mentre no s'hagi trobat i tinguem clients
         while (!trobat && i < list_Clients.size()) {
+            //Recorrem la llista i obtenim el client actual
             client = list_Clients.get(i);
+            //Si el nom d'usuari del client actual coincideix amb el nom d'usuari desitjat ...
             if (client.getNomUsuari().equals(nomUser)) {
+                //nom d'usuari ja en ús
                 trobat = true;
             }
             i++;
@@ -201,8 +205,10 @@ public class ControladorMovieAff {
      */
     public boolean comprovaAdmin(String nomUsuari, String pass) {
         boolean admin = false;
+        //Comparem nom d'usuari i contrasenya introduits amb les de l'administrador
         if (this.administrador.getNomUsuari().equals(nomUsuari)
                 && this.administrador.getPassword().equals(pass)) {
+            //login com administrador
             admin = true;
         }
         return admin;
@@ -220,11 +226,16 @@ public class ControladorMovieAff {
         int id = -2;
         int i = 0;
         Client client;
+        //Recorrem la llista de clients
         while (i < list_Clients.size() && id == -2) {
+            //obtenim el client actual
             client = list_Clients.get(i);
+            //si hi ha coincidencia entre noms d'usuari ...
             if (client.getNomUsuari().equals(nomUsuari)) {
                 id = -1;
+                //comparem contrasenyes
                 if (client.getPassword().equals(pass)) {
+                    //obtenim l'identificador del client
                     id = client.getIdClient();
                 }
             }
@@ -322,8 +333,11 @@ public class ControladorMovieAff {
      */
     public boolean generarInforme(int mAct) {
         boolean generem = false;
+        //Si el mes actual es major que el mes de l'ultim informe generat
         if (mAct > this.mes_UltimInforme) {
+            //generem informe
             generem = true;
+            //actualitzem el mes de l'ultim informe
             this.mes_UltimInforme = mAct;
         }
         return generem;
