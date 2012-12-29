@@ -134,33 +134,50 @@ public class ControladorMovieAff {
             i++;
         }
     }
-
+    
+    /**
+     * Retorna el tamany de la llista de clients
+     * 
+     * @return  
+     */
     public int obteTamanyClients() {
         return list_Clients.size();
     }
 
     /**
      * Retorna un string amb el catàleg
-     *
+     * 
      * @return
      */
     public String mostrarCataleg() {
         return cataleg.mostrarCataleg();
     }
 
+    /**
+     * Retorna un client de la llista de clients
+     * 
+     * @param id identificador del client
+     * @return 
+     */
     public Client obteClient(int id) {
         return list_Clients.get(id);
     }
 
+    /**
+     * Retorna l'administrador de l'aplicació
+     * 
+     * @return 
+     */
     public Client obteAdministrador() {
         return this.administrador;
     }
 
-    public ArrayList<Genere> obteGeneresPelicula(int pos) {
-
-        return cataleg.getGeneresPelicula(pos);
-    }
-
+    /**
+     * Comprova si existeix un nom d'usuari
+     * 
+     * @param nomUser nom d'usuari a comprovar
+     * @return 
+     */
     public boolean comprovaNomUser(String nomUser) {
         boolean trobat = false;
         int i = 0;
@@ -175,6 +192,13 @@ public class ControladorMovieAff {
         return trobat;
     }
 
+    /**
+     * Comprova si l'usuari es l'administrador
+     * 
+     * @param nomUsuari nom d'usuari a comprovar
+     * @param pass contrasenya a comprovar
+     * @return 
+     */
     public boolean comprovaAdmin(String nomUsuari, String pass) {
         boolean admin = false;
         if (this.administrador.getNomUsuari().equals(nomUsuari)
@@ -184,6 +208,14 @@ public class ControladorMovieAff {
         return admin;
     }
 
+    /**
+     * Comprova si el nom d'usuari i la contrasenya coincideixen amb
+     * les que hi han guardades al registre
+     * 
+     * @param nomUsuari nom d'usuari a comprovar
+     * @param pass contrasenya a comprovar
+     * @return 
+     */
     public int comprovaClients(String nomUsuari, String pass) {
         int id = -2;
         int i = 0;
@@ -201,38 +233,93 @@ public class ControladorMovieAff {
         return id;
     }
 
+    /**
+     * Visualitza una pel·lícula
+     * 
+     * @param posicio posició de la pel·lícula
+     * @param userLogat usuari que veu la pel·lícula
+     * @return 
+     */
     public String visualitzaPelicula(int posicio, Client userLogat) {
         return cataleg.visualitzarPelicula(posicio, userLogat);
     }
 
+    /**
+     * Busca una pel·lícula pel seu títol
+     * 
+     * @param nomPeli títol de la pel·lícula
+     * @return 
+     */
     public String trobarNomPeli(String nomPeli) {
         return cataleg.trobarNomPeli(nomPeli);
     }
 
+    /**
+     * Obté l'identificador d'una pel·lícula
+     * 
+     * @param opt posició de la pel·lícula
+     * @return 
+     */
     public String obteIdPelicula(int opt) {
         return cataleg.getIdPelicula(opt);
     }
 
+    /**
+     * Valora una pel·lícula
+     * 
+     * @param idPelicula identificador de la pel·lícula
+     * @param idClient identificador del client
+     * @param puntuacio valoració introduïda
+     * @param data_act data actual
+     */
     public void puntuaPelicula(String idPelicula, int idClient, int puntuacio, Data data_act) {
         cataleg.puntuaPelicula(idPelicula, idClient, puntuacio, data_act);
     }
 
+    /**
+     * Retorna els generes d'una pel·lícula
+     * 
+     * @param pos posició de la pel·lícula
+     * @return 
+     */
     public ArrayList<Genere> obteGeneresPeli(int posicio) {
         return cataleg.getGeneresPelicula(posicio);
     }
 
+    /**
+     * Obté les pel·lícules recomanades per a un client
+     * 
+     * @param userLogat client que obté les recomanacions
+     * @return 
+     */
     public String obtindreRecomanacions(Client userLogat) {
         return cataleg.obtindreRecomanacions(userLogat);
     }
 
+    /**
+     * Dona de baixa una pel·lícula
+     * 
+     * @return 
+     */
     public String baixaPelicula() {
         return cataleg.baixaPelicula();
     }
 
+    /**
+     * Obté les pel·lícules amb les valoracions més altes
+     * 
+     * @return 
+     */
     public String ranking() {
         return cataleg.ranking();
     }
 
+    /**
+     * Generar informes de clients
+     * 
+     * @param mAct mes actual
+     * @return 
+     */
     public boolean generarInforme(int mAct) {
         boolean generem = false;
         if (mAct > this.mes_UltimInforme) {
@@ -244,7 +331,7 @@ public class ControladorMovieAff {
 
     /**
      * Retorna un string amb la llista de clients
-     *
+     * 
      * @return
      */
     public String mostrarInformeClients() {

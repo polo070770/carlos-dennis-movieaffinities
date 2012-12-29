@@ -78,6 +78,10 @@ public class MovieAffinities {
 
     }
 
+    /**
+     * Métode principal
+     * @param args 
+     */
     public static void main(String[] args) {
 
         // Creem un objecte per llegir des del teclat
@@ -91,7 +95,11 @@ public class MovieAffinities {
 
     }
 
-    //Menu principal i submenus
+    /**
+     * Menú principal de l'aplicació
+     * 
+     * @param sc 
+     */
     private void gestioMenuPrincipal(Scanner sc) {
 
         // Creem l'objecte per al menú. Li passem com a primer paràmetre el nom del menú
@@ -115,7 +123,6 @@ public class MovieAffinities {
                     registrar(sc);
                     break;
                 case LOGIN:
-                    //LOGIN
                     login(sc);
                     break;
                 case VEURE_CATALEG:
@@ -129,6 +136,11 @@ public class MovieAffinities {
         } while (opcio != MovieAffinities.OpcionsMenuPrincipal.SORTIR);
     }
 
+    /**
+     * Submenú de client
+     * 
+     * @param sc 
+     */
     private void entradaClient(Scanner sc) {
 
         // Creem l'objecte per al menú. Li passem com a primer paràmetre el nom del menú
@@ -166,6 +178,11 @@ public class MovieAffinities {
         } while (opcio != MovieAffinities.OpcionsSubmenu1.SORTIR);
     }
 
+    /**
+     * Submenú d'administrador
+     * 
+     * @param sc 
+     */
     private void entradaAdministrador(Scanner sc) {
 
         // Creem l'objecte per al menú. Li passem com a primer paràmetre el nom del menú
@@ -200,6 +217,11 @@ public class MovieAffinities {
         } while (opcio != MovieAffinities.OpcionsSubmenu2.SORTIR);
     }
 
+    /**
+     * Submenú dins de "Veure Catàleg"
+     * 
+     * @param sc 
+     */
     public void veureCataleg(Scanner sc) {
         // Creem l'objecte per al menú. Li passem com a primer paràmetre el nom del menú
         Menu<MovieAffinities.OpcionsSubmenu3> menu = new Menu<MovieAffinities.OpcionsSubmenu3>("Consultar catàleg o obtindre recomanacions?",
@@ -231,6 +253,11 @@ public class MovieAffinities {
         } while (opcio != MovieAffinities.OpcionsSubmenu3.ENRERE);
     }
 
+    /**
+     * Submenú dins de "Valorar Pel·lícula"
+     * 
+     * @param sc 
+     */
     public void valorarPelicula(Scanner sc) {
 
         // Creem l'objecte per al menú. Li passem com a primer paràmetre el nom del menú
@@ -267,7 +294,8 @@ public class MovieAffinities {
         } while (opcio != MovieAffinities.OpcionsSubmenu4.ENRERE);
     }
 
-    //Metodos de aplicacion
+    //Metodes de l'aplicació
+    
     /**
      * Mostra el catàleg de pel·lícules
      */
@@ -275,6 +303,11 @@ public class MovieAffinities {
         System.out.println(_ctrlMovieAff.mostrarCataleg());
     }
 
+    /**
+     * Métode per registrar un nou client
+     * 
+     * @param sc 
+     */
     public void registrar(Scanner sc) {
         String nom;
         System.out.println("\nNom?");
@@ -335,6 +368,11 @@ public class MovieAffinities {
 
     }
 
+    /**
+     * Métode per logar-se a l'aplicació
+     * 
+     * @param sc 
+     */
     public void login(Scanner sc) {
         String nomUser;
         System.out.println("Nom d'usuari?");
@@ -351,10 +389,10 @@ public class MovieAffinities {
             int nivell = _ctrlMovieAff.comprovaClients(nomUser, pass);
             switch (nivell) {
                 case -2:
-                    System.err.println("Nom d'usuari mal introduit.");
+                    System.err.println("Nom d'usuari incorrecte.");
                     break;
                 case -1:
-                    System.err.println("Password mal introduit.");
+                    System.err.println("Contrasenya incorrecta.");
                     break;
                 default:
                     userLogat = _ctrlMovieAff.obteClient(nivell - 1);
@@ -369,13 +407,18 @@ public class MovieAffinities {
 
     }
 
+    /**
+     * Métode per veure una pel·lícula
+     * 
+     * @param sc 
+     */
     public void veurePelicula(Scanner sc) {
 
         if (!userLogat.isEstatStream()) {
 
             mostrarCataleg();
 
-            System.out.println("\nQuina pel·lícula que vols visualitzar.");
+            System.out.println("\nQuina pel·lícula vols visualitzar.");
             System.out.print(">>");
             int posicio = sc.nextInt();
 
@@ -397,6 +440,12 @@ public class MovieAffinities {
         }
     }
 
+    /**
+     * Métode per valorar una pel·lícula del catàleg
+     * 
+     * @param sc
+     * @return 
+     */
     public String valorarPeliculaCataleg(Scanner sc) {
 
         int posPeli;
@@ -414,6 +463,12 @@ public class MovieAffinities {
 
     }
 
+    /**
+     * Métode per valorar una pel·lícula introduïnt el seu títol
+     * 
+     * @param sc
+     * @return 
+     */
     public String valorarPeliculaNom(Scanner sc) {
 
         String nomPeli;
@@ -428,6 +483,12 @@ public class MovieAffinities {
         return idPeli;
     }
 
+    /**
+     * Métode per valorar una pel·lícula donat un identificador
+     * 
+     * @param idPelicula identificador de la pel·lícula
+     * @param sc 
+     */
     public void valorarPelicula(String idPelicula, Scanner sc) {
 
         if (idPelicula != null) {
@@ -459,19 +520,31 @@ public class MovieAffinities {
         }
     }
 
+    /**
+     * Métode per obtindre recomanacions de pel·lícules
+     */
     public void obtenirRecomanacio() {
         System.out.println(_ctrlMovieAff.obtindreRecomanacions(userLogat));
     }
 
+    /**
+     * Métode que mostra les pel·lícules donades de baixa
+     */
     public void baixaPelicula() {
         System.out.println("\nPel·lícules donades de baixa......");
         System.out.println(_ctrlMovieAff.baixaPelicula());
     }
 
+    /**
+     * Métode que mostra les pel·lícules amb més ranking
+     */
     public void ranking() {
         System.out.println(_ctrlMovieAff.ranking());
     }
 
+    /**
+     * Métode que mostra el resultat de l'informe generat
+     */
     public void generarInforme() {
 
         int mAct = dataActual.obtenirMesActual();
@@ -482,6 +555,12 @@ public class MovieAffinities {
 
     }
 
+    /**
+     * Métode que comprova si un nom d'usuari ja está en ús
+     * 
+     * @param nomUser nom d'usuari a comprovar
+     * @return 
+     */
     public boolean comprovaUser(String nomUser) {
         return _ctrlMovieAff.comprovaNomUser(nomUser);
     }
