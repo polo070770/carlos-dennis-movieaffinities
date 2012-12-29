@@ -6,15 +6,17 @@ package edu.ub.model;
 
 /**
  * Clase Productora
+ *
  * @author Michel Dennis Quitaquis i Carlos Cortés Sánchez
  */
 public class Productora {
-    
+
     private String nom;
     private int id;
 
     /**
      * Constructor
+     *
      * @param nom nom de la productora
      * @param id id de la productora
      */
@@ -25,7 +27,8 @@ public class Productora {
 
     /**
      * Retorna el nom
-     * @return 
+     *
+     * @return
      */
     public String getNom() {
         return nom;
@@ -33,7 +36,8 @@ public class Productora {
 
     /**
      * Canvia el nom
-     * @param nom 
+     *
+     * @param nom
      */
     public void setNom(String nom) {
         this.nom = nom;
@@ -41,7 +45,8 @@ public class Productora {
 
     /**
      * Retorna l'id
-     * @return 
+     *
+     * @return
      */
     public int getId() {
         return id;
@@ -49,10 +54,10 @@ public class Productora {
 
     /**
      * Canvia l'id
-     * @param id 
+     *
+     * @param id
      */
     public void setId(int id) {
         this.id = id;
     }
-    
 }

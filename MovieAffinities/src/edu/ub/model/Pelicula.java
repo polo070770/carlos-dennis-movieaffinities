@@ -178,4 +178,45 @@ public class Pelicula {
         }
         return mateixGenere;
     }
+
+    public boolean valoracioBaixa() {
+        int total, tmp1, nValoracions;
+        boolean tmp2;
+        float rating;
+
+        total = 0;
+        tmp2 = false;
+
+        for (Valoracio val : valoracions_peli) {
+            tmp1 = val.getValoracio();
+            total = total + tmp1;
+        }
+
+        nValoracions = valoracions_peli.size();
+
+        rating = total / nValoracions;
+
+        if (rating < 2) {
+            tmp2 = true;
+        }
+
+        return tmp2;
+    }
+
+    public float valoracio() {
+        int v, total, nValoracions;
+        float rating;
+        total = 0;
+
+        for (Valoracio val : valoracions_peli) {
+            v = val.getValoracio();
+            total = total + v;
+        }
+
+        nValoracions = valoracions_peli.size();
+
+        rating = total / nValoracions;
+
+        return rating;
+    }
 }

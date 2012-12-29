@@ -19,6 +19,7 @@ public class MovieAffinities {
 
     ControladorMovieAff _ctrlMovieAff;
     Client userLogat;
+    Data dataActual;
 
     static private enum OpcionsMenuPrincipal {
 
@@ -72,6 +73,7 @@ public class MovieAffinities {
      */
     public MovieAffinities() {
 
+        dataActual = new Data();
         _ctrlMovieAff = new ControladorMovieAff();
 
     }
@@ -89,6 +91,7 @@ public class MovieAffinities {
 
     }
 
+    //Menu principal i submenus
     private void gestioMenuPrincipal(Scanner sc) {
 
         // Creem l'objecte per al menú. Li passem com a primer paràmetre el nom del menú
@@ -160,11 +163,10 @@ public class MovieAffinities {
                 case SORTIR:
                     break;
             }
-
         } while (opcio != MovieAffinities.OpcionsSubmenu1.SORTIR);
     }
 
-    private void entradaAdmin(Scanner sc) {
+    private void entradaAdministrador(Scanner sc) {
 
         // Creem l'objecte per al menú. Li passem com a primer paràmetre el nom del menú
         Menu<MovieAffinities.OpcionsSubmenu2> menu = new Menu<MovieAffinities.OpcionsSubmenu2>("Menu Administrador", MovieAffinities.OpcionsSubmenu2.values());
@@ -184,15 +186,17 @@ public class MovieAffinities {
             // Fem les accions necessàries
             switch (opcio) {
                 case ELIMINAR_PELI:
+                    baixaPelicula();
                     break;
                 case VEURE_PELIS_MES_VALORADES:
+                    ranking();
                     break;
                 case GENERAR_INFORME_CLIENT:
+                    generarInforme();
                     break;
                 case SORTIR:
                     break;
             }
-
         } while (opcio != MovieAffinities.OpcionsSubmenu2.SORTIR);
     }
 
@@ -224,7 +228,6 @@ public class MovieAffinities {
                 case ENRERE:
                     break;
             }
-
         } while (opcio != MovieAffinities.OpcionsSubmenu3.ENRERE);
     }
 
@@ -261,18 +264,10 @@ public class MovieAffinities {
                 case ENRERE:
                     break;
             }
-
         } while (opcio != MovieAffinities.OpcionsSubmenu4.ENRERE);
-
     }
 
-    /**
-     * Mostra la llista de clients
-     */
-    public void mostraClients() {
-        System.out.println(_ctrlMovieAff.getStringListClients());
-    }
-
+    //Metodos de aplicacion
     /**
      * Mostra el catàleg de pel·lícules
      */
@@ -280,9 +275,6 @@ public class MovieAffinities {
         System.out.println(_ctrlMovieAff.mostrarCataleg());
     }
 
-    /**
-     *
-     */
     public void registrar(Scanner sc) {
         String nom;
         System.out.println("\nNom?");
@@ -334,11 +326,11 @@ public class MovieAffinities {
 
         client = new Client(id, nom, nomUser, dni,
                 adreca, pass, false, 0, data, nacionalitat);
-        
+
         System.out.println(client.toString());
 
         _ctrlMovieAff.afegirClient(client);
-        
+
         System.out.println("\nRegistre correcte!\n");
 
     }
@@ -351,7 +343,7 @@ public class MovieAffinities {
         String pass;
         System.out.println("Contrasenya?");
         pass = sc.next();
-        
+
         boolean admin;
         admin = _ctrlMovieAff.comprovaAdmin(nomUser, pass);
 
@@ -372,7 +364,7 @@ public class MovieAffinities {
         } else {
             userLogat = _ctrlMovieAff.obteAdministrador();
             System.out.println("\nAdministrador logat correctament.\n");
-            entradaAdmin(sc);
+            entradaAdministrador(sc);
         }
 
     }
@@ -387,7 +379,7 @@ public class MovieAffinities {
             System.out.print(">>");
             int posicio = sc.nextInt();
 
-            ArrayList<Genere> generesPeli = _ctrlMovieAff.obteGenerePeli(posicio);
+            ArrayList<Genere> generesPeli = _ctrlMovieAff.obteGeneresPeli(posicio);
 
             if (userLogat.volVeurePeli(generesPeli)) {
                 System.err.println("\nHas vist més de dues pel·lícules avui, tens una falta!");
@@ -465,16 +457,32 @@ public class MovieAffinities {
         } else {
             System.err.println("\nNo s'ha trobat la pel·lícula, torna-ho a intentar.");
         }
-
     }
 
     public void obtenirRecomanacio() {
         System.out.println(_ctrlMovieAff.obtindreRecomanacions(userLogat));
     }
 
+    public void baixaPelicula() {
+        System.out.println("\nPel·lícules donades de baixa......");
+        System.out.println(_ctrlMovieAff.baixaPelicula());
+    }
+
+    public void ranking() {
+        System.out.println(_ctrlMovieAff.ranking());
+    }
+
+    public void generarInforme() {
+
+        int mAct = dataActual.obtenirMesActual();
+
+        if (_ctrlMovieAff.generarInforme(mAct)) {
+            System.out.println(_ctrlMovieAff.mostrarInformeClients());
+        }
+
+    }
+
     public boolean comprovaUser(String nomUser) {
-
         return _ctrlMovieAff.comprovaNomUser(nomUser);
-
     }
 }

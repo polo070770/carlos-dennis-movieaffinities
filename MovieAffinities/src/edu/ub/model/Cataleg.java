@@ -39,11 +39,41 @@ public class Cataleg {
         return "";
     }
 
-    public void baixaPelicula() {
+    public String baixaPelicula() {
+        String s = "";
+        boolean esborro;
+        int tamany, i;
+        tamany = list_Pelis.size();
+        i = 0;
+        Pelicula pelicula;
+        while (i < tamany) {
+            pelicula = list_Pelis.get(i);
+            esborro = pelicula.valoracioBaixa();
+            if (esborro) {
+                s += pelicula.toString();
+                list_Pelis.remove(i);
+                tamany--;
+            }
+            i++;
+        }
+        return s;
     }
 
     public String ranking() {
-        return "";
+        String s = "";
+        int i = 5;
+        float valora = 0;
+
+        while (i >= 3) {
+            for (Pelicula pel : list_Pelis) {
+                valora = pel.valoracio();
+                if (valora >= i && valora < (i + 1)) {
+                    s += "\n" + pel.toString();
+                }
+            }
+            i--;
+        }
+        return s;
     }
 
     public String trobarNomPeli(String nomPeli) {

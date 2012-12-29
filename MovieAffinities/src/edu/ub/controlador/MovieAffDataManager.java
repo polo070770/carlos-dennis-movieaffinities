@@ -204,11 +204,11 @@ public class MovieAffDataManager {
         /* TODO: Creeu aqui el vostre admin
          */
 
-        /*System.out.println("\nAdmin ID: " + id);
-         System.out.println("-----------------");
-         System.out.println("Nom: " + nom);
-         System.out.println("Usuari: " + usuari);
-         System.out.println("Password: " + password);*/
+        System.out.println("\nAdmin ID: " + id);
+        System.out.println("-----------------");
+        System.out.println("Nom: " + nom);
+        System.out.println("Usuari: " + usuari);
+        System.out.println("Password: " + password);
 
         Client administrador;
         administrador = new Client(nom, usuari, password);

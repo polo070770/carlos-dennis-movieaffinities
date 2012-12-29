@@ -4,7 +4,7 @@ import edu.ub.model.Artista;
 
 /**
  * Clase Actor
- * 
+ *
  * @author Michel Dennis Quitaquis i Carlos Cortés Sánchez
  */
 public class Actor extends Artista {
@@ -12,7 +12,8 @@ public class Actor extends Artista {
     private String nomArtistic;
 
     /**
-     * Constructor 
+     * Constructor
+     *
      * @param nom nom de l'actor
      * @param id id de l'actor
      */
