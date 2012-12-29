@@ -43,9 +43,8 @@ public class ControladorMovieAff {
      *
      * @param client client que s'afegeix
      */
-    public String afegirClient(Client client) {
+    public void afegirClient(Client client) {
         list_Clients.add(client);
-        return client.toString();
     }
 
     /**
@@ -75,7 +74,7 @@ public class ControladorMovieAff {
      *
      * @return
      */
-    public String getStringCataleg() {
+    public String mostrarCataleg() {
         return cataleg.mostrarCataleg();
     }
 
@@ -211,7 +210,6 @@ public class ControladorMovieAff {
             i++;
         }
         return id;
-
     }
 
     public String visualitzaPelicula(int posicio, Client userLogat) {
@@ -230,8 +228,8 @@ public class ControladorMovieAff {
         cataleg.puntuaPelicula(idPelicula, idClient, puntuacio, data_act);
     }
 
-    public ArrayList<Genere> obteGenerePeli(int pos) {
-        return cataleg.getGeneresPelicula(pos);
+    public ArrayList<Genere> obteGenerePeli(int posicio) {
+        return cataleg.getGeneresPelicula(posicio);
     }
 
     public String obtindreRecomanacions(Client userLogat) {

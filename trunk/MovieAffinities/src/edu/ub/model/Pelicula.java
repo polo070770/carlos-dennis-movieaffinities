@@ -121,7 +121,7 @@ public class Pelicula {
     @Override
     public String toString() {
 
-        String s;
+        String v;
         /*s = "\nActors: ";
          for (Artista a : list_Actor) {
          s += a.toString();
@@ -137,9 +137,9 @@ public class Pelicula {
 
         /*s = "\nProductora: " + productora.getNom();*/
 
-        s = "\nValoracions: ";
-        for (Valoracio v : valoracions_peli) {
-            s += v.getValoracio() + " ";
+        v = "\nValoracions: ";
+        for (Valoracio valoracio : valoracions_peli) {
+            v += valoracio.getValoracio() + " ";
         }
 
         String r;
@@ -147,7 +147,7 @@ public class Pelicula {
                 + "\n--------------------------------------------------"
                 + "\nMinuts: " + this.minuts + "\nAny: " + this.anyPublicacio.toStringAnyPublicacio()
                 + "\nDescripció: " + this.descripcio;
-        return r + s;
+        return r + v;
     }
 
     public boolean mateixTitol(String nomPeli) {
@@ -156,25 +156,26 @@ public class Pelicula {
 
     public void valorarPeli(int idClient, int puntuacio, Data dataValoracio) {
         int idValoracio;
-        idValoracio = valoracions_peli.size();
+        idValoracio = valoracions_peli.size() + 1;
         Valoracio valoracioPeli = new Valoracio(this.idPelicula, idClient, puntuacio, dataValoracio, idValoracio);
-
         valoracions_peli.add(valoracioPeli);
     }
 
     public boolean mateixGenere(String generePref) {
-        boolean b = false;
+        boolean mateixGenere = false;
         String tmp;
         int i = 0;
+        Genere genere;
 
-        while (i < list_GeneresPelis.size() && !b) {
-            tmp = list_GeneresPelis.get(i).getGenere();
+        while (i < list_GeneresPelis.size() && !mateixGenere) {
+            genere = list_GeneresPelis.get(i);
+            tmp = genere.getGenere();
 
             if (tmp.equals(generePref)) {
-                b = true;
+                mateixGenere = true;
             }
             i++;
         }
-        return b;
+        return mateixGenere;
     }
 }

@@ -29,8 +29,8 @@ public class Cataleg {
      */
     public String mostrarCataleg() {
         String r = "";
-        for (Pelicula p : list_Pelis) {
-            r += "\n" + p.toString();
+        for (Pelicula pelicula : list_Pelis) {
+            r += "\n" + pelicula.toString();
         }
         return r;
     }
@@ -86,23 +86,23 @@ public class Cataleg {
     }
 
     public String obtindreRecomanacions(Client userLogat) {
-        String generePref = userLogat.getGenerePreferit();
+        String generePref = userLogat.generePreferit();
         String pelisRecomanades = "";
 
-        for (Pelicula pel : list_Pelis) {
-            boolean trobat = false;
+        for (Pelicula pelicula : list_Pelis) {
+            boolean trobat;
             String titol_tmp;
             boolean haVist;
 
-            trobat = pel.mateixGenere(generePref);
+            trobat = pelicula.mateixGenere(generePref);
 
             if (trobat) {
-                titol_tmp = pel.getTitol();
+                titol_tmp = pelicula.getTitol();
 
                 haVist = userLogat.haVistPeli(titol_tmp);
 
                 if (!haVist) {
-                    pelisRecomanades += pel.toString();
+                    pelisRecomanades += pelicula.toString();
                 }
             }
         }
