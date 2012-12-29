@@ -50,7 +50,7 @@ public class MovieAffXMLParser {
             this.obtenirClients(doc);
             this.obtenirValoracions(doc);
             this.obtenirAdministradors(doc);
-            
+
         } catch (SAXParseException err) {
             System.out.println("** Error parsejant" + ", linia " + err.getLineNumber() + ", uri " + err.getSystemId());
             System.out.println(" " + err.getMessage());

@@ -6,6 +6,7 @@ package edu.ub.model;
 
 /**
  * Clase Artista
+ *
  * @author Michel Dennis Quitaquis i Carlos Cortés Sánchez
  */
 public class Artista {
@@ -16,10 +17,10 @@ public class Artista {
     //Atributs adicionals
     private float cache;
     private String nacionalitat;
-    
 
     /**
      * Constructor
+     *
      * @param nom nom de l'artista
      * @param id id de l'artista
      */
@@ -31,7 +32,8 @@ public class Artista {
 
     /**
      * Retorna un string amb les dades de l'artista
-     * @return r 
+     *
+     * @return r
      */
     @Override
     public String toString() {

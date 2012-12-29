@@ -25,6 +25,7 @@ public class ControladorMovieAff {
     private Cataleg cataleg;
     private MovieAffDataManager dataManager;
     private Client administrador;
+    private int mes_UltimInforme;
 
     /**
      * Constructor
@@ -35,6 +36,7 @@ public class ControladorMovieAff {
         cataleg = new Cataleg();
         dataManager = new MovieAffDataManager();
         dataManager.obtenirDades("data/MovieAff.xml", this);
+        mes_UltimInforme = 0;
 
     }
 
@@ -48,34 +50,12 @@ public class ControladorMovieAff {
     }
 
     /**
-     * Retorna un string amb la llista de clients
-     *
-     * @return
-     */
-    public String getStringListClients() {
-        String r = "";
-        for (Client c : list_Clients) {
-            r += "\n" + c.toString();
-        }
-        return r;
-    }
-
-    /**
      * Afegeix una pel·lícula al catàleg
      *
      * @param pelicula pel·lícula que s'afegeix
      */
     public void afegirPelicula(Pelicula pelicula) {
         cataleg.addPelicula(pelicula);
-    }
-
-    /**
-     * Retorna un string amb el catàleg
-     *
-     * @return
-     */
-    public String mostrarCataleg() {
-        return cataleg.mostrarCataleg();
     }
 
     /**
@@ -159,6 +139,15 @@ public class ControladorMovieAff {
         return list_Clients.size();
     }
 
+    /**
+     * Retorna un string amb el catàleg
+     *
+     * @return
+     */
+    public String mostrarCataleg() {
+        return cataleg.mostrarCataleg();
+    }
+
     public Client obteClient(int id) {
         return list_Clients.get(id);
     }
@@ -228,11 +217,41 @@ public class ControladorMovieAff {
         cataleg.puntuaPelicula(idPelicula, idClient, puntuacio, data_act);
     }
 
-    public ArrayList<Genere> obteGenerePeli(int posicio) {
+    public ArrayList<Genere> obteGeneresPeli(int posicio) {
         return cataleg.getGeneresPelicula(posicio);
     }
 
     public String obtindreRecomanacions(Client userLogat) {
         return cataleg.obtindreRecomanacions(userLogat);
+    }
+
+    public String baixaPelicula() {
+        return cataleg.baixaPelicula();
+    }
+
+    public String ranking() {
+        return cataleg.ranking();
+    }
+
+    public boolean generarInforme(int mAct) {
+        boolean generem = false;
+        if (mAct > this.mes_UltimInforme) {
+            generem = true;
+            this.mes_UltimInforme = mAct;
+        }
+        return generem;
+    }
+
+    /**
+     * Retorna un string amb la llista de clients
+     *
+     * @return
+     */
+    public String mostrarInformeClients() {
+        String r = "";
+        for (Client c : list_Clients) {
+            r += "\n" + c.mostrarInforme();
+        }
+        return r;
     }
 }

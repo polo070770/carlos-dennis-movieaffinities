@@ -414,4 +414,19 @@ public class Client {
 
         return vista;
     }
+
+    public String mostrarInforme() {
+        String r;
+        r = "\nClient ID: " + this.idClient + "\n-----------------"
+                + "\nNom: " + this.nom + "\nUsuari: " + this.nomUsuari + "\nDni: " + this.dni
+                + "\nAdreça: " + this.adreca + "\nPassword: " + this.password + "\nEs VIP: " + this.vip
+                + "\nNombre de faltes: " + this.numFaltes
+                + "\nCuota mensual: " + this.cuotaMensual;
+
+        String s = "\nPelis vistes: ";
+        for (Pelicula pel : list_PelisVistes) {
+            s = s + "\n" + pel.toString();
+        }
+        return r + s;
+    }
 }
