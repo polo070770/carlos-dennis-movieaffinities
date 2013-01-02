@@ -80,7 +80,8 @@ public class MovieAffinities {
 
     /**
      * Métode principal
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String[] args) {
 
@@ -97,8 +98,8 @@ public class MovieAffinities {
 
     /**
      * Menú principal de l'aplicació
-     * 
-     * @param sc 
+     *
+     * @param sc
      */
     private void gestioMenuPrincipal(Scanner sc) {
 
@@ -138,8 +139,8 @@ public class MovieAffinities {
 
     /**
      * Submenú de client
-     * 
-     * @param sc 
+     *
+     * @param sc
      */
     private void entradaClient(Scanner sc) {
 
@@ -180,8 +181,8 @@ public class MovieAffinities {
 
     /**
      * Submenú d'administrador
-     * 
-     * @param sc 
+     *
+     * @param sc
      */
     private void entradaAdministrador(Scanner sc) {
 
@@ -219,8 +220,8 @@ public class MovieAffinities {
 
     /**
      * Submenú dins de "Veure Catàleg"
-     * 
-     * @param sc 
+     *
+     * @param sc
      */
     public void veureCataleg(Scanner sc) {
         // Creem l'objecte per al menú. Li passem com a primer paràmetre el nom del menú
@@ -255,8 +256,8 @@ public class MovieAffinities {
 
     /**
      * Submenú dins de "Valorar Pel·lícula"
-     * 
-     * @param sc 
+     *
+     * @param sc
      */
     public void valorarPelicula(Scanner sc) {
 
@@ -305,8 +306,8 @@ public class MovieAffinities {
 
     /**
      * Métode per registrar un nou client
-     * 
-     * @param sc 
+     *
+     * @param sc
      */
     public void registrar(Scanner sc) {
         //introduim les dades del registre
@@ -352,7 +353,7 @@ public class MovieAffinities {
         String pass;
         System.out.println("Password?");
         pass = sc.next();
-        
+
         //afegim la data de naixment del client
         Client client;
         Data data;
@@ -373,8 +374,8 @@ public class MovieAffinities {
 
     /**
      * Métode per logar-se a l'aplicació
-     * 
-     * @param sc 
+     *
+     * @param sc
      */
     public void login(Scanner sc) {
         //introduim les dades del login
@@ -418,8 +419,8 @@ public class MovieAffinities {
 
     /**
      * Métode per veure una pel·lícula
-     * 
-     * @param sc 
+     *
+     * @param sc
      */
     public void veurePelicula(Scanner sc) {
         //si no hi ha un stream obert
@@ -443,7 +444,7 @@ public class MovieAffinities {
             userLogat.setEstatStream(false);
 
             System.out.println("\t\n......streaming tancat.\n");
-        //si hi ha un stream obert, avisem
+            //si hi ha un stream obert, avisem
         } else {
             System.out.println("Tens un altre canal de streaming obert!");
         }
@@ -451,9 +452,9 @@ public class MovieAffinities {
 
     /**
      * Métode per valorar una pel·lícula del catàleg
-     * 
+     *
      * @param sc
-     * @return 
+     * @return
      */
     public String valorarPeliculaCataleg(Scanner sc) {
 
@@ -474,9 +475,9 @@ public class MovieAffinities {
 
     /**
      * Métode per valorar una pel·lícula introduïnt el seu títol
-     * 
+     *
      * @param sc
-     * @return 
+     * @return
      */
     public String valorarPeliculaNom(Scanner sc) {
 
@@ -494,9 +495,9 @@ public class MovieAffinities {
 
     /**
      * Métode per valorar una pel·lícula donat un identificador
-     * 
+     *
      * @param idPelicula identificador de la pel·lícula
-     * @param sc 
+     * @param sc
      */
     public void valorarPelicula(String idPelicula, Scanner sc) {
 
@@ -517,7 +518,7 @@ public class MovieAffinities {
 
             Calendar c = Calendar.getInstance();
             Data data_act = new Data(c.get(Calendar.DATE), c.get(Calendar.MONTH), c.get(Calendar.YEAR));
-            
+
             userLogat.puntuaPelicula(idPelicula, puntuacio, data_act);
 
             idClient = userLogat.getIdClient();
@@ -566,9 +567,9 @@ public class MovieAffinities {
 
     /**
      * Métode que comprova si un nom d'usuari ja está en ús
-     * 
+     *
      * @param nomUser nom d'usuari a comprovar
-     * @return 
+     * @return
      */
     public boolean comprovaUser(String nomUser) {
         return _ctrlMovieAff.comprovaNomUser(nomUser);
