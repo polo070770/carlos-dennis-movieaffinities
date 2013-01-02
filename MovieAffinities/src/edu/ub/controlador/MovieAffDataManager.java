@@ -34,6 +34,7 @@ public class MovieAffDataManager {
      * Obté les dades del fitxer XML passat per paràmetre
      *
      * @param nomFitxer ruta del fitxer XML del que obtenir les dades
+     * @param ctrl  
      */
     public void obtenirDades(String nomFitxer, ControladorMovieAff ctrl) {
         MovieAffXMLParser parser = new MovieAffXMLParser(this);
@@ -48,6 +49,7 @@ public class MovieAffDataManager {
      * @param mins duració del film
      * @param year any en el que es va estrenar
      * @param title títol del film
+     * @param desc  descripció del film
      */
     public void crearMovie(String id, String mins, String year, String title, String desc) {
 

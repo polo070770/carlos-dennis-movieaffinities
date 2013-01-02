@@ -17,10 +17,13 @@ public class Data {
     private int mes;
     private int any;
 
+    /**
+     * Constructor (MOVIEAFFINITIES, Data actual)
+     */
     public Data() {
         Calendar c = Calendar.getInstance();
         dia = c.get(Calendar.DATE);
-        mes = c.get(Calendar.MONTH);
+        mes = c.get(Calendar.MONTH) + 1;
         any = c.get(Calendar.YEAR);
     }
 
@@ -50,8 +53,8 @@ public class Data {
 
     /**
      * Converteix a string l'any de publicació
-     * 
-     * @return 
+     *
+     * @return
      */
     public String toStringAnyPublicacio() {
         return String.valueOf(this.any);
@@ -59,8 +62,8 @@ public class Data {
 
     /**
      * Obté el mes actual
-     * 
-     * @return 
+     *
+     * @return
      */
     public int obtenirMesActual() {
         return this.mes;
